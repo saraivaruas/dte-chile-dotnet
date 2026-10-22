@@ -1,0 +1,285 @@
+{
+ "name": "ConsumoFolios",
+ "min": 1,
+ "max": 1,
+ "children": [
+  {
+   "name": "DocumentoConsumoFolios",
+   "min": 1,
+   "max": 1,
+   "children": [
+    {
+     "name": "Caratula",
+     "min": 1,
+     "max": 1,
+     "children": [
+      {
+       "name": "RutEmisor",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "RutEnvia",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "FchResol",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "date"
+       }
+      },
+      {
+       "name": "NroResol",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 6
+       }
+      },
+      {
+       "name": "FchInicio",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "date"
+       }
+      },
+      {
+       "name": "FchFinal",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "date"
+       }
+      },
+      {
+       "name": "Correlativo",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 3
+       }
+      },
+      {
+       "name": "SecEnvio",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 3
+       }
+      },
+      {
+       "name": "TmstFirmaEnv",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "dateTime"
+       }
+      }
+     ],
+     "attributes": [
+      {
+       "name": "version",
+       "required": true,
+       "type": {
+        "base": "decimal"
+       },
+       "fixed": "1.0"
+      }
+     ]
+    },
+    {
+     "name": "Resumen",
+     "min": 1,
+     "max": 3,
+     "children": [
+      {
+       "name": "TipoDocumento",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "enum": [
+         "39",
+         "41",
+         "61"
+        ]
+       }
+      },
+      {
+       "name": "MntNeto",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "MntIva",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "TasaIVA",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "decimal",
+        "totalDigits": 5,
+        "fractionDigits": 2,
+        "minInclusive": "0.01",
+        "maxInclusive": "999.99"
+       }
+      },
+      {
+       "name": "MntExento",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "MntTotal",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "FoliosEmitidos",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 6
+       }
+      },
+      {
+       "name": "FoliosAnulados",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 6
+       }
+      },
+      {
+       "name": "FoliosUtilizados",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 6
+       }
+      },
+      {
+       "name": "RangoUtilizados",
+       "min": 0,
+       "max": null,
+       "children": [
+        {
+         "name": "Inicial",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "Final",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        }
+       ]
+      },
+      {
+       "name": "RangoAnulados",
+       "min": 0,
+       "max": null,
+       "children": [
+        {
+         "name": "Inicial",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "Final",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "attributes": [
+    {
+     "name": "ID",
+     "required": true,
+     "type": {
+      "base": "ID"
+     },
+     "fixed": null
+    }
+   ]
+  },
+  {
+   "name": "Signature",
+   "min": 1,
+   "max": 1,
+   "ref": "ds:Signature"
+  }
+ ],
+ "attributes": [
+  {
+   "name": "version",
+   "required": true,
+   "type": {
+    "base": "decimal"
+   },
+   "fixed": "1.0"
+  }
+ ],
+ "schema": "consumo_folios/ConsumoFolio_v10.xsd",
+ "namespace": "http://www.sii.cl/SiiDte"
+}

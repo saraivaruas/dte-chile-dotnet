@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>DteChile</RootNamespace>
+    <AssemblyName>DteChile</AssemblyName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <Version>0.1.0</Version>
+    <Authors>Jorge Luis Saraiva Ruas</Authors>
+    <Copyright>Copyright (c) 2026 Jorge Luis Saraiva Ruas</Copyright>
+    <Description>Biblioteca .NET sin dependencias para generar, timbrar, firmar y enviar Documentos Tributarios Electrónicos (DTE) al SII de Chile. Software libre MIT.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/saraivaruas/dte-chile</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/saraivaruas/dte-chile</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>chile;sii;dte;factura-electronica;boleta-electronica;xmldsig</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\spec\*.json" LogicalName="spec/%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

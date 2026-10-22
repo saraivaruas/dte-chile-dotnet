@@ -1,0 +1,122 @@
+{
+ "name": "EnvioRecibos",
+ "min": 1,
+ "max": 1,
+ "children": [
+  {
+   "name": "SetRecibos",
+   "min": 1,
+   "max": 1,
+   "children": [
+    {
+     "name": "Caratula",
+     "min": 1,
+     "max": 1,
+     "children": [
+      {
+       "name": "RutResponde",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "RutRecibe",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "NmbContacto",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 40
+       }
+      },
+      {
+       "name": "FonoContacto",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 40
+       }
+      },
+      {
+       "name": "MailContacto",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 80
+       }
+      },
+      {
+       "name": "TmstFirmaEnv",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "dateTime"
+       }
+      }
+     ],
+     "attributes": [
+      {
+       "name": "version",
+       "required": true,
+       "type": {
+        "base": "decimal"
+       },
+       "fixed": "1.0"
+      }
+     ]
+    },
+    {
+     "name": "Recibo",
+     "min": 1,
+     "max": null,
+     "ref": "SiiDte:Recibo"
+    }
+   ],
+   "attributes": [
+    {
+     "name": "ID",
+     "required": true,
+     "type": {
+      "base": "ID"
+     },
+     "fixed": null
+    }
+   ]
+  },
+  {
+   "name": "Signature",
+   "min": 1,
+   "max": 1,
+   "ref": "ds:Signature"
+  }
+ ],
+ "attributes": [
+  {
+   "name": "version",
+   "required": true,
+   "type": {
+    "base": "decimal"
+   },
+   "fixed": "1.0"
+  }
+ ],
+ "schema": "19983/EnvioRecibos_v10.xsd",
+ "namespace": "http://www.sii.cl/SiiDte"
+}

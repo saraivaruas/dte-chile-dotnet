@@ -1,0 +1,135 @@
+{
+ "name": "AEC",
+ "min": 1,
+ "max": 1,
+ "children": [
+  {
+   "name": "DocumentoAEC",
+   "min": 1,
+   "max": 1,
+   "children": [
+    {
+     "name": "Caratula",
+     "min": 1,
+     "max": 1,
+     "children": [
+      {
+       "name": "RutCedente",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "RutCesionario",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "NmbContacto",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 40
+       }
+      },
+      {
+       "name": "FonoContacto",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 40
+       }
+      },
+      {
+       "name": "MailContacto",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 80
+       }
+      },
+      {
+       "name": "TmstFirmaEnvio",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "dateTime"
+       }
+      }
+     ],
+     "attributes": [
+      {
+       "name": "version",
+       "required": true,
+       "type": {
+        "base": "decimal"
+       },
+       "fixed": "1.0"
+      }
+     ]
+    },
+    {
+     "name": "Cesiones",
+     "min": 1,
+     "max": 1,
+     "children": [
+      {
+       "name": "DTECedido",
+       "min": 1,
+       "max": 1,
+       "ref": "SiiDte:DTECedido"
+      },
+      {
+       "name": "Cesion",
+       "min": 1,
+       "max": 40,
+       "ref": "SiiDte:Cesion"
+      }
+     ]
+    }
+   ],
+   "attributes": [
+    {
+     "name": "ID",
+     "required": true,
+     "type": {
+      "base": "ID"
+     },
+     "fixed": null
+    }
+   ]
+  },
+  {
+   "name": "Signature",
+   "min": 1,
+   "max": 1,
+   "ref": "ds:Signature"
+  }
+ ],
+ "attributes": [
+  {
+   "name": "version",
+   "required": true,
+   "type": {
+    "base": "string"
+   },
+   "fixed": "1.0"
+  }
+ ],
+ "schema": "cesion/AEC_v10.xsd",
+ "namespace": "http://www.sii.cl/SiiDte"
+}

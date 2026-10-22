@@ -1,0 +1,79 @@
+{
+ "name": "DTECedido",
+ "min": 1,
+ "max": 1,
+ "children": [
+  {
+   "name": "DocumentoDTECedido",
+   "min": 1,
+   "max": 1,
+   "children": [
+    {
+     "name": "DTE",
+     "min": 1,
+     "max": 1,
+     "ref": "SiiDte:DTE"
+    },
+    {
+     "name": "ImagenDTE",
+     "min": 0,
+     "max": 1,
+     "type": {
+      "base": "base64Binary"
+     }
+    },
+    {
+     "name": "Recibo",
+     "min": 0,
+     "max": 40,
+     "ref": "SiiDte:Recibo"
+    },
+    {
+     "name": "ImagenAR",
+     "min": 0,
+     "max": 1,
+     "type": {
+      "base": "base64Binary",
+      "maxLength": 4000000
+     }
+    },
+    {
+     "name": "TmstFirma",
+     "min": 1,
+     "max": 1,
+     "type": {
+      "base": "dateTime"
+     }
+    }
+   ],
+   "attributes": [
+    {
+     "name": "ID",
+     "required": true,
+     "type": {
+      "base": "ID"
+     },
+     "fixed": null
+    }
+   ]
+  },
+  {
+   "name": "Signature",
+   "min": 1,
+   "max": 1,
+   "ref": "ds:Signature"
+  }
+ ],
+ "attributes": [
+  {
+   "name": "version",
+   "required": true,
+   "type": {
+    "base": "string"
+   },
+   "fixed": "1.0"
+  }
+ ],
+ "schema": "cesion/DTECedido_v10.xsd",
+ "namespace": "http://www.sii.cl/SiiDte"
+}

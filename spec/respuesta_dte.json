@@ -1,0 +1,457 @@
+{
+ "name": "RespuestaDTE",
+ "min": 1,
+ "max": 1,
+ "children": [
+  {
+   "name": "Resultado",
+   "min": 1,
+   "max": 1,
+   "children": [
+    {
+     "name": "Caratula",
+     "min": 1,
+     "max": 1,
+     "children": [
+      {
+       "name": "RutResponde",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "RutRecibe",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "IdRespuesta",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 10
+       }
+      },
+      {
+       "name": "NroDetalles",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 4
+       }
+      },
+      {
+       "name": "NmbContacto",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 40
+       }
+      },
+      {
+       "name": "FonoContacto",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 40
+       }
+      },
+      {
+       "name": "MailContacto",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 80
+       }
+      },
+      {
+       "name": "TmstFirmaResp",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "dateTime"
+       }
+      }
+     ],
+     "attributes": [
+      {
+       "name": "version",
+       "required": true,
+       "type": {
+        "base": "decimal"
+       },
+       "fixed": "1.0"
+      }
+     ]
+    },
+    {
+     "choice": [
+      {
+       "name": "RecepcionEnvio",
+       "min": 0,
+       "max": null,
+       "children": [
+        {
+         "name": "NmbEnvio",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 80
+         }
+        },
+        {
+         "name": "FchRecep",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "dateTime"
+         }
+        },
+        {
+         "name": "CodEnvio",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "EnvioDTEID",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 80
+         }
+        },
+        {
+         "name": "Digest",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "base64Binary"
+         }
+        },
+        {
+         "name": "RutEmisor",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 10,
+          "minLength": 3,
+          "pattern": "[0-9]+-([0-9]|K)"
+         }
+        },
+        {
+         "name": "RutReceptor",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 10,
+          "minLength": 3,
+          "pattern": "[0-9]+-([0-9]|K)"
+         }
+        },
+        {
+         "name": "EstadoRecepEnv",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 2,
+          "enum": [
+           "0",
+           "1",
+           "2",
+           "3",
+           "90",
+           "91",
+           "99"
+          ]
+         }
+        },
+        {
+         "name": "RecepEnvGlosa",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 256
+         }
+        },
+        {
+         "name": "NroDTE",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 4
+         }
+        },
+        {
+         "name": "RecepcionDTE",
+         "min": 0,
+         "max": null,
+         "children": [
+          {
+           "name": "TipoDTE",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "33",
+             "34",
+             "46",
+             "52",
+             "56",
+             "61"
+            ]
+           }
+          },
+          {
+           "name": "Folio",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 10
+           }
+          },
+          {
+           "name": "FchEmis",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "date"
+           }
+          },
+          {
+           "name": "RUTEmisor",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "RUTRecep",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "MntTotal",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "EstadoRecepDTE",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 2,
+            "enum": [
+             "0",
+             "1",
+             "2",
+             "3",
+             "4",
+             "99"
+            ]
+           }
+          },
+          {
+           "name": "RecepDTEGlosa",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 256
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "ResultadoDTE",
+       "min": 0,
+       "max": null,
+       "children": [
+        {
+         "name": "TipoDTE",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "33",
+           "34",
+           "46",
+           "52",
+           "56",
+           "61"
+          ]
+         }
+        },
+        {
+         "name": "Folio",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "FchEmis",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "date"
+         }
+        },
+        {
+         "name": "RUTEmisor",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 10,
+          "minLength": 3,
+          "pattern": "[0-9]+-([0-9]|K)"
+         }
+        },
+        {
+         "name": "RUTRecep",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 10,
+          "minLength": 3,
+          "pattern": "[0-9]+-([0-9]|K)"
+         }
+        },
+        {
+         "name": "MntTotal",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "CodEnvio",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "EstadoDTE",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 2,
+          "enum": [
+           "0",
+           "1",
+           "2"
+          ]
+         }
+        },
+        {
+         "name": "EstadoDTEGlosa",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 256
+         }
+        },
+        {
+         "name": "CodRchDsc",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "negativeInteger",
+          "totalDigits": 3
+         }
+        }
+       ]
+      }
+     ],
+     "min": 1,
+     "max": 1
+    }
+   ],
+   "attributes": [
+    {
+     "name": "ID",
+     "required": true,
+     "type": {
+      "base": "ID"
+     },
+     "fixed": null
+    }
+   ]
+  },
+  {
+   "name": "Signature",
+   "min": 1,
+   "max": 1,
+   "ref": "ds:Signature"
+  }
+ ],
+ "attributes": [
+  {
+   "name": "version",
+   "required": true,
+   "type": {
+    "base": "decimal"
+   },
+   "fixed": "1.0"
+  }
+ ],
+ "schema": "ic/RespuestaEnvioDTE_v10.xsd",
+ "namespace": "http://www.sii.cl/SiiDte"
+}

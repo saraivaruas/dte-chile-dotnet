@@ -1,0 +1,827 @@
+{
+ "name": "LibroBoleta",
+ "min": 1,
+ "max": 1,
+ "children": [
+  {
+   "name": "EnvioLibro",
+   "min": 1,
+   "max": 1,
+   "children": [
+    {
+     "name": "Caratula",
+     "min": 1,
+     "max": 1,
+     "children": [
+      {
+       "name": "RutEmisorLibro",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "RutEnvia",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "PeriodoTributario",
+       "min": 1,
+       "max": 1
+      },
+      {
+       "name": "FchResol",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "date"
+       }
+      },
+      {
+       "name": "NroResol",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 6
+       }
+      },
+      {
+       "name": "TipoLibro",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "enum": [
+         "ESPECIAL"
+        ]
+       }
+      },
+      {
+       "name": "TipoEnvio",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "enum": [
+         "PARCIAL",
+         "FINAL",
+         "TOTAL",
+         "AJUSTE"
+        ]
+       }
+      },
+      {
+       "name": "NroSegmento",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 6
+       }
+      },
+      {
+       "name": "FolioNotificacion",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 18
+       }
+      }
+     ]
+    },
+    {
+     "name": "ResumenSegmento",
+     "min": 0,
+     "max": 1,
+     "children": [
+      {
+       "name": "TotalesSegmento",
+       "min": 1,
+       "max": 2,
+       "children": [
+        {
+         "name": "TpoDoc",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "39",
+           "41"
+          ]
+         }
+        },
+        {
+         "name": "TotAnulado",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotalesServicio",
+         "min": 0,
+         "max": 9,
+         "children": [
+          {
+           "name": "TpoServ",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 1,
+            "enum": [
+             "1",
+             "2",
+             "3",
+             "4"
+            ]
+           }
+          },
+          {
+           "name": "PeriodoDevengo",
+           "min": 0,
+           "max": 1
+          },
+          {
+           "name": "TotDoc",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 10
+           }
+          },
+          {
+           "name": "TotMntExe",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotMntTotal",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotMntNoFact",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotMntPeriodo",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotSaldoAnt",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotVlrPagar",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotTicket",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 7
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "ResumenPeriodo",
+     "min": 0,
+     "max": 1,
+     "children": [
+      {
+       "name": "TotalesPeriodo",
+       "min": 1,
+       "max": 2,
+       "children": [
+        {
+         "name": "TpoDoc",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "39",
+           "41"
+          ]
+         }
+        },
+        {
+         "name": "TotAnulado",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotalesServicio",
+         "min": 1,
+         "max": 9,
+         "children": [
+          {
+           "name": "TpoServ",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 1,
+            "enum": [
+             "1",
+             "2",
+             "3",
+             "4"
+            ]
+           }
+          },
+          {
+           "name": "PeriodoDevengado",
+           "min": 0,
+           "max": 1
+          },
+          {
+           "name": "TotDoc",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger"
+           }
+          },
+          {
+           "name": "TotMntExe",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotMntNeto",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TasaIVA",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 5,
+            "fractionDigits": 2
+           }
+          },
+          {
+           "name": "TotMntIVA",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotMntTotal",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotMntNoFact",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotMntPeriodo",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotSaldoAnt",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotVlrPagar",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotTicket",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 7
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Detalle",
+     "min": 0,
+     "max": null,
+     "children": [
+      {
+       "name": "TpoDoc",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "enum": [
+         "39",
+         "41"
+        ]
+       }
+      },
+      {
+       "name": "FolioDoc",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 10
+       }
+      },
+      {
+       "name": "Anulado",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "enum": [
+         "A"
+        ]
+       }
+      },
+      {
+       "name": "TpoServ",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 1,
+        "enum": [
+         "1",
+         "2",
+         "3",
+         "4"
+        ]
+       }
+      },
+      {
+       "name": "FchEmiDoc",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "date"
+       }
+      },
+      {
+       "name": "FchVencDoc",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "date"
+       }
+      },
+      {
+       "name": "PeriodoDesde",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "date"
+       }
+      },
+      {
+       "name": "PeriodoHasta",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "date"
+       }
+      },
+      {
+       "name": "CdgSIISucur",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 8
+       }
+      },
+      {
+       "name": "RUTCliente",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "CodIntCli",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 80
+       }
+      },
+      {
+       "name": "MntExe",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "MntTotal",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "MntNoFact",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "MntPeriodo",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "SaldoAnt",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "VlrPagar",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "TotTicketBoleta",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 3
+       }
+      }
+     ]
+    },
+    {
+     "name": "TmstFirma",
+     "min": 1,
+     "max": 1,
+     "type": {
+      "base": "dateTime"
+     }
+    }
+   ],
+   "attributes": [
+    {
+     "name": "ID",
+     "required": true,
+     "type": {
+      "base": "ID"
+     },
+     "fixed": null
+    }
+   ]
+  },
+  {
+   "name": "Signature",
+   "min": 1,
+   "max": 1,
+   "children": [
+    {
+     "name": "SignedInfo",
+     "min": 1,
+     "max": 1,
+     "children": [
+      {
+       "name": "CanonicalizationMethod",
+       "min": 1,
+       "max": 1,
+       "attributes": [
+        {
+         "name": "Algorithm",
+         "required": true,
+         "type": {
+          "base": "anyURI"
+         },
+         "fixed": "http://www.w3.org/TR/2001/REC-xml-c14n-20010315"
+        }
+       ]
+      },
+      {
+       "name": "SignatureMethod",
+       "min": 1,
+       "max": 1,
+       "attributes": [
+        {
+         "name": "Algorithm",
+         "required": true,
+         "type": {
+          "base": "anyURI",
+          "enum": [
+           "http://www.w3.org/2000/09/xmldsig#rsa-sha1",
+           "http://www.w3.org/2000/09/xmldsig#dsa-sha1"
+          ]
+         },
+         "fixed": null
+        }
+       ]
+      },
+      {
+       "name": "Reference",
+       "min": 1,
+       "max": 1,
+       "children": [
+        {
+         "name": "Transforms",
+         "min": 0,
+         "max": 1,
+         "children": [
+          {
+           "name": "Transform",
+           "min": 1,
+           "max": 1,
+           "attributes": [
+            {
+             "name": "Algorithm",
+             "required": true,
+             "type": {
+              "base": "anyURI"
+             },
+             "fixed": null
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "name": "DigestMethod",
+         "min": 1,
+         "max": 1,
+         "attributes": [
+          {
+           "name": "Algorithm",
+           "required": true,
+           "type": {
+            "base": "anyURI"
+           },
+           "fixed": "http://www.w3.org/2000/09/xmldsig#sha1"
+          }
+         ]
+        },
+        {
+         "name": "DigestValue",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "base64Binary"
+         }
+        }
+       ],
+       "attributes": [
+        {
+         "name": "URI",
+         "required": true,
+         "type": {
+          "base": "anyURI"
+         },
+         "fixed": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "SignatureValue",
+     "min": 1,
+     "max": 1,
+     "type": {
+      "base": "base64Binary"
+     }
+    },
+    {
+     "name": "KeyInfo",
+     "min": 1,
+     "max": 1,
+     "children": [
+      {
+       "name": "KeyValue",
+       "min": 1,
+       "max": 1,
+       "children": [
+        {
+         "choice": [
+          {
+           "name": "RSAKeyValue",
+           "min": 1,
+           "max": 1,
+           "children": [
+            {
+             "name": "Modulus",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "base64Binary"
+             }
+            },
+            {
+             "name": "Exponent",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "base64Binary"
+             }
+            }
+           ]
+          },
+          {
+           "name": "DSAKeyValue",
+           "min": 1,
+           "max": 1,
+           "children": [
+            {
+             "name": "P",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "base64Binary"
+             }
+            },
+            {
+             "name": "Q",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "base64Binary"
+             }
+            },
+            {
+             "name": "G",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "base64Binary"
+             }
+            },
+            {
+             "name": "Y",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "base64Binary"
+             }
+            }
+           ]
+          }
+         ],
+         "min": 1,
+         "max": 1
+        }
+       ]
+      },
+      {
+       "name": "X509Data",
+       "min": 1,
+       "max": 1,
+       "children": [
+        {
+         "name": "X509Certificate",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "base64Binary"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "attributes": [
+  {
+   "name": "version",
+   "required": true,
+   "type": {
+    "base": "decimal"
+   },
+   "fixed": "1.0"
+  }
+ ],
+ "schema": "libro_bol/LibroBOLETA_v10.xsd",
+ "namespace": "http://www.sii.cl/SiiDte"
+}

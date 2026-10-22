@@ -1,0 +1,162 @@
+{
+ "name": "EnvioDTE",
+ "min": 1,
+ "max": 1,
+ "children": [
+  {
+   "name": "SetDTE",
+   "min": 1,
+   "max": 1,
+   "children": [
+    {
+     "name": "Caratula",
+     "min": 1,
+     "max": 1,
+     "children": [
+      {
+       "name": "RutEmisor",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "RutEnvia",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "RutReceptor",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "FchResol",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "date",
+        "minInclusive": "2000-01-01",
+        "maxInclusive": "2050-12-31"
+       }
+      },
+      {
+       "name": "NroResol",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 6
+       }
+      },
+      {
+       "name": "TmstFirmaEnv",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "dateTime",
+        "minInclusive": "2000-01-01T00:00:00",
+        "maxInclusive": "2050-12-31T23:59:59"
+       }
+      },
+      {
+       "name": "SubTotDTE",
+       "min": 1,
+       "max": 20,
+       "children": [
+        {
+         "name": "TpoDTE",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "33",
+           "34",
+           "43",
+           "46",
+           "52",
+           "56",
+           "61",
+           "110",
+           "111",
+           "112"
+          ]
+         }
+        },
+        {
+         "name": "NroDTE",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger"
+         }
+        }
+       ]
+      }
+     ],
+     "attributes": [
+      {
+       "name": "version",
+       "required": true,
+       "type": {
+        "base": "decimal"
+       },
+       "fixed": "1.0"
+      }
+     ]
+    },
+    {
+     "name": "DTE",
+     "min": 1,
+     "max": 2000,
+     "ref": "SiiDte:DTE"
+    }
+   ],
+   "attributes": [
+    {
+     "name": "ID",
+     "required": true,
+     "type": {
+      "base": "ID"
+     },
+     "fixed": null
+    }
+   ]
+  },
+  {
+   "name": "Signature",
+   "min": 1,
+   "max": 1,
+   "ref": "ds:Signature"
+  }
+ ],
+ "attributes": [
+  {
+   "name": "version",
+   "required": true,
+   "type": {
+    "base": "decimal"
+   },
+   "fixed": "1.0"
+  }
+ ],
+ "schema": "dte/EnvioDTE_v10.xsd",
+ "namespace": "http://www.sii.cl/SiiDte"
+}

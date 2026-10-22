@@ -1,0 +1,2005 @@
+{
+ "name": "LibroCompraVenta",
+ "min": 1,
+ "max": 1,
+ "children": [
+  {
+   "name": "EnvioLibro",
+   "min": 1,
+   "max": 1,
+   "children": [
+    {
+     "name": "Caratula",
+     "min": 1,
+     "max": 1,
+     "children": [
+      {
+       "name": "RutEmisorLibro",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "RutEnvia",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "PeriodoTributario",
+       "min": 1,
+       "max": 1
+      },
+      {
+       "name": "FchResol",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "date"
+       }
+      },
+      {
+       "name": "NroResol",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 6
+       }
+      },
+      {
+       "name": "TipoOperacion",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "enum": [
+         "COMPRA",
+         "VENTA"
+        ]
+       }
+      },
+      {
+       "name": "TipoLibro",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "enum": [
+         "MENSUAL",
+         "ESPECIAL",
+         "RECTIFICA"
+        ]
+       }
+      },
+      {
+       "name": "TipoEnvio",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "minLength": 5,
+        "enum": [
+         "PARCIAL",
+         "FINAL",
+         "TOTAL",
+         "AJUSTE"
+        ]
+       }
+      },
+      {
+       "name": "NroSegmento",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 6
+       }
+      },
+      {
+       "name": "FolioNotificacion",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 10
+       }
+      },
+      {
+       "name": "CodAutRec",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10
+       }
+      }
+     ]
+    },
+    {
+     "name": "ResumenSegmento",
+     "min": 0,
+     "max": 1,
+     "children": [
+      {
+       "name": "TotalesSegmento",
+       "min": 1,
+       "max": 40,
+       "children": [
+        {
+         "name": "TpoDoc",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "29",
+           "30",
+           "32",
+           "33",
+           "34",
+           "35",
+           "38",
+           "39",
+           "40",
+           "41",
+           "43",
+           "45",
+           "46",
+           "48",
+           "53",
+           "55",
+           "56",
+           "60",
+           "61",
+           "101",
+           "102",
+           "103",
+           "104",
+           "105",
+           "106",
+           "108",
+           "109",
+           "110",
+           "111",
+           "112",
+           "175",
+           "180",
+           "185",
+           "900",
+           "901",
+           "902",
+           "903",
+           "904",
+           "905",
+           "906",
+           "907",
+           "909",
+           "910",
+           "911",
+           "914",
+           "918",
+           "919",
+           "920",
+           "921",
+           "922",
+           "924",
+           "500",
+           "501"
+          ]
+         }
+        },
+        {
+         "name": "TpoImp",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 1,
+          "enum": [
+           "1",
+           "2"
+          ]
+         }
+        },
+        {
+         "name": "TotDoc",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotAnulado",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotOpExe",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotMntExe",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotMntNeto",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotOpIVARec",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotMntIVA",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotOpActivoFijo",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotMntActivoFijo",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotMntIVAActivoFijo",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotIVANoRec",
+         "min": 0,
+         "max": 5,
+         "children": [
+          {
+           "name": "CodIVANoRec",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 1,
+            "enum": [
+             "1",
+             "2",
+             "3",
+             "4",
+             "9"
+            ]
+           }
+          },
+          {
+           "name": "TotOpIVANoRec",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 10
+           }
+          },
+          {
+           "name": "TotMntIVANoRec",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          }
+         ]
+        },
+        {
+         "name": "TotOpIVAUsoComun",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotIVAUsoComun",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotIVAFueraPlazo",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotIVAPropio",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotIVATerceros",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotLey18211",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotOtrosImp",
+         "min": 0,
+         "max": 20,
+         "children": [
+          {
+           "name": "CodImp",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "14",
+             "15",
+             "16",
+             "17",
+             "18",
+             "19",
+             "23",
+             "24",
+             "25",
+             "26",
+             "27",
+             "28",
+             "29",
+             "30",
+             "31",
+             "32",
+             "33",
+             "34",
+             "35",
+             "36",
+             "37",
+             "38",
+             "39",
+             "40",
+             "41",
+             "44",
+             "45",
+             "46",
+             "47",
+             "48",
+             "49",
+             "50",
+             "51",
+             "52",
+             "53",
+             "60",
+             "271",
+             "301",
+             "321",
+             "331",
+             "341",
+             "361",
+             "371",
+             "481"
+            ]
+           }
+          },
+          {
+           "name": "TotMntImp",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          }
+         ]
+        },
+        {
+         "name": "TotImpSinCredito",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotOpIVARetTotal",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotIVARetTotal",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotOpIVARetParcial",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotIVARetParcial",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotCredEC",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotDepEnvase",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotLiquidaciones",
+         "min": 0,
+         "max": 1,
+         "children": [
+          {
+           "name": "TotValComNeto",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotValComExe",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotValComIVA",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          }
+         ]
+        },
+        {
+         "name": "TotMntTotal",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotOpIVANoRetenido",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotIVANoRetenido",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotMntNoFact",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotMntPeriodo",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotPsjNac",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotPsjInt",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotTabPuros",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotTabCigarrillos",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotTabElaborado",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "ResumenPeriodo",
+     "min": 0,
+     "max": 1,
+     "children": [
+      {
+       "name": "TotalesPeriodo",
+       "min": 1,
+       "max": 40,
+       "children": [
+        {
+         "name": "TpoDoc",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "29",
+           "30",
+           "32",
+           "33",
+           "34",
+           "35",
+           "38",
+           "39",
+           "40",
+           "41",
+           "43",
+           "45",
+           "46",
+           "48",
+           "53",
+           "55",
+           "56",
+           "60",
+           "61",
+           "101",
+           "102",
+           "103",
+           "104",
+           "105",
+           "106",
+           "108",
+           "109",
+           "110",
+           "111",
+           "112",
+           "175",
+           "180",
+           "185",
+           "900",
+           "901",
+           "902",
+           "903",
+           "904",
+           "905",
+           "906",
+           "907",
+           "909",
+           "910",
+           "911",
+           "914",
+           "918",
+           "919",
+           "920",
+           "921",
+           "922",
+           "924",
+           "500",
+           "501"
+          ]
+         }
+        },
+        {
+         "name": "TpoImp",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 1,
+          "enum": [
+           "1",
+           "2"
+          ]
+         }
+        },
+        {
+         "name": "TotDoc",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotAnulado",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotOpExe",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotMntExe",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotMntNeto",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotOpIVARec",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotMntIVA",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotOpActivoFijo",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotMntActivoFijo",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotMntIVAActivoFijo",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotIVANoRec",
+         "min": 0,
+         "max": 5,
+         "children": [
+          {
+           "name": "CodIVANoRec",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "1",
+             "2",
+             "3",
+             "4",
+             "9"
+            ]
+           }
+          },
+          {
+           "name": "TotOpIVANoRec",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 10
+           }
+          },
+          {
+           "name": "TotMntIVANoRec",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          }
+         ]
+        },
+        {
+         "name": "TotOpIVAUsoComun",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotIVAUsoComun",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "FctProp",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "fractionDigits": 3,
+          "totalDigits": 5,
+          "maxInclusive": "99.999",
+          "minInclusive": "00.001"
+         }
+        },
+        {
+         "name": "TotCredIVAUsoComun",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotIVAFueraPlazo",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotIVAPropio",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotIVATerceros",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotLey18211",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotOtrosImp",
+         "min": 0,
+         "max": 20,
+         "children": [
+          {
+           "name": "CodImp",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "14",
+             "15",
+             "16",
+             "17",
+             "18",
+             "19",
+             "23",
+             "24",
+             "25",
+             "26",
+             "27",
+             "28",
+             "29",
+             "30",
+             "31",
+             "32",
+             "33",
+             "34",
+             "35",
+             "36",
+             "37",
+             "38",
+             "39",
+             "40",
+             "41",
+             "44",
+             "45",
+             "46",
+             "47",
+             "48",
+             "49",
+             "50",
+             "51",
+             "52",
+             "53",
+             "60",
+             "271",
+             "301",
+             "321",
+             "331",
+             "341",
+             "361",
+             "371",
+             "481"
+            ]
+           }
+          },
+          {
+           "name": "TotMntImp",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "FctImpAdic",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 6,
+            "fractionDigits": 4,
+            "maxInclusive": "1.000",
+            "minInclusive": "0.001"
+           }
+          },
+          {
+           "name": "TotCredImp",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          }
+         ]
+        },
+        {
+         "name": "TotImpSinCredito",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotOpIVARetTotal",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotIVARetTotal",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotOpIVARetParcial",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotIVARetParcial",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotCredEC",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotDepEnvase",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotLiquidaciones",
+         "min": 0,
+         "max": 1,
+         "children": [
+          {
+           "name": "TotValComNeto",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotValComExe",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TotValComIVA",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          }
+         ]
+        },
+        {
+         "name": "TotMntTotal",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotOpIVANoRetenido",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "TotIVANoRetenido",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotMntNoFact",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotMntPeriodo",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotPsjNac",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotPsjInt",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotTabPuros",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotTabCigarrillos",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotTabElaborado",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "TotImpVehiculo",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Detalle",
+     "min": 0,
+     "max": null,
+     "children": [
+      {
+       "name": "TpoDoc",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "enum": [
+         "29",
+         "30",
+         "32",
+         "33",
+         "34",
+         "35",
+         "38",
+         "39",
+         "40",
+         "41",
+         "43",
+         "45",
+         "46",
+         "48",
+         "53",
+         "55",
+         "56",
+         "60",
+         "61",
+         "101",
+         "102",
+         "103",
+         "104",
+         "105",
+         "106",
+         "108",
+         "109",
+         "110",
+         "111",
+         "112",
+         "175",
+         "180",
+         "185",
+         "900",
+         "901",
+         "902",
+         "903",
+         "904",
+         "905",
+         "906",
+         "907",
+         "909",
+         "910",
+         "911",
+         "914",
+         "918",
+         "919",
+         "920",
+         "921",
+         "922",
+         "924",
+         "500",
+         "501"
+        ]
+       }
+      },
+      {
+       "name": "Emisor",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 1,
+        "enum": [
+         "1"
+        ]
+       }
+      },
+      {
+       "name": "IndFactCompra",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 1,
+        "enum": [
+         "1"
+        ]
+       }
+      },
+      {
+       "name": "NroDoc",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 10
+       }
+      },
+      {
+       "name": "Anulado",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "enum": [
+         "A"
+        ]
+       }
+      },
+      {
+       "name": "Operacion",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "enum": [
+         "1",
+         "2"
+        ]
+       }
+      },
+      {
+       "name": "TpoImp",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 1,
+        "enum": [
+         "1",
+         "2"
+        ]
+       }
+      },
+      {
+       "name": "TasaImp",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "decimal",
+        "totalDigits": 5,
+        "fractionDigits": 2,
+        "minInclusive": "0",
+        "maxInclusive": "100"
+       }
+      },
+      {
+       "name": "NumInt",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10
+       }
+      },
+      {
+       "name": "IndServicio",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "enum": [
+         "1",
+         "2",
+         "3"
+        ]
+       }
+      },
+      {
+       "name": "IndSinCosto",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "enum": [
+         "1"
+        ]
+       }
+      },
+      {
+       "name": "FchDoc",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "date",
+        "minInclusive": "2000-01-01",
+        "maxInclusive": "2050-12-31"
+       }
+      },
+      {
+       "name": "CdgSIISucur",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 9
+       }
+      },
+      {
+       "name": "RUTDoc",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "minLength": 3,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "RznSoc",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 50
+       }
+      },
+      {
+       "name": "Extranjero",
+       "min": 0,
+       "max": 1,
+       "children": [
+        {
+         "name": "NumId",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "minLength": 1,
+          "maxLength": 20
+         }
+        },
+        {
+         "name": "Nacionalidad",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "minLength": 1,
+          "maxLength": 3
+         }
+        }
+       ]
+      },
+      {
+       "name": "TpoDocRef",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "enum": [
+         "29",
+         "30",
+         "32",
+         "33",
+         "34",
+         "35",
+         "38",
+         "39",
+         "40",
+         "41",
+         "43",
+         "45",
+         "46",
+         "48",
+         "53",
+         "55",
+         "56",
+         "60",
+         "61",
+         "101",
+         "102",
+         "103",
+         "104",
+         "105",
+         "106",
+         "108",
+         "109",
+         "110",
+         "111",
+         "112",
+         "175",
+         "180",
+         "185",
+         "900",
+         "901",
+         "902",
+         "903",
+         "904",
+         "905",
+         "906",
+         "907",
+         "909",
+         "910",
+         "911",
+         "914",
+         "918",
+         "919",
+         "920",
+         "921",
+         "922",
+         "924",
+         "500",
+         "501"
+        ]
+       }
+      },
+      {
+       "name": "FolioDocRef",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 10
+       }
+      },
+      {
+       "name": "MntExe",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "MntNeto",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "MntIVA",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "MntActivoFijo",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "MntIVAActivoFijo",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "IVANoRec",
+       "min": 0,
+       "max": 5,
+       "children": [
+        {
+         "name": "CodIVANoRec",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "1",
+           "2",
+           "3",
+           "4",
+           "9"
+          ]
+         }
+        },
+        {
+         "name": "MntIVANoRec",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        }
+       ]
+      },
+      {
+       "name": "IVAUsoComun",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "IVAFueraPlazo",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "IVAPropio",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "IVATerceros",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "Ley18211",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "OtrosImp",
+       "min": 0,
+       "max": 20,
+       "children": [
+        {
+         "name": "CodImp",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "14",
+           "15",
+           "16",
+           "17",
+           "18",
+           "19",
+           "23",
+           "24",
+           "25",
+           "26",
+           "27",
+           "28",
+           "29",
+           "30",
+           "31",
+           "32",
+           "33",
+           "34",
+           "35",
+           "36",
+           "37",
+           "38",
+           "39",
+           "40",
+           "41",
+           "44",
+           "45",
+           "46",
+           "47",
+           "48",
+           "49",
+           "50",
+           "51",
+           "52",
+           "53",
+           "60",
+           "271",
+           "301",
+           "321",
+           "331",
+           "341",
+           "361",
+           "371",
+           "481"
+          ]
+         }
+        },
+        {
+         "name": "TasaImp",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 5,
+          "fractionDigits": 2,
+          "minInclusive": "0",
+          "maxInclusive": "100"
+         }
+        },
+        {
+         "name": "MntImp",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        }
+       ]
+      },
+      {
+       "name": "MntSinCred",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "IVARetTotal",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "IVARetParcial",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "CredEC",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "DepEnvase",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "Liquidaciones",
+       "min": 0,
+       "max": 1,
+       "children": [
+        {
+         "name": "RutEmisor",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 10,
+          "minLength": 3,
+          "pattern": "[0-9]+-([0-9]|K)"
+         }
+        },
+        {
+         "name": "ValComNeto",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "ValComExe",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "ValComIVA",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        }
+       ]
+      },
+      {
+       "name": "MntTotal",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "IVANoRetenido",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "MntNoFact",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "MntPeriodo",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "PsjNac",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "PsjInt",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "TabPuros",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "TabCigarrillos",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "TabElaborado",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "ImpVehiculo",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      }
+     ]
+    },
+    {
+     "choice": [
+      {
+       "name": "LceCal",
+       "min": 1,
+       "max": 1,
+       "ref": "SiiLce:LceCal"
+      },
+      {
+       "name": "LceCoCertif",
+       "min": 1,
+       "max": 1,
+       "ref": "SiiLce:LceCoCertif"
+      }
+     ],
+     "min": 0,
+     "max": 1
+    },
+    {
+     "name": "TmstFirma",
+     "min": 1,
+     "max": 1,
+     "type": {
+      "base": "dateTime"
+     }
+    }
+   ],
+   "attributes": [
+    {
+     "name": "ID",
+     "required": true,
+     "type": {
+      "base": "ID"
+     },
+     "fixed": null
+    }
+   ]
+  },
+  {
+   "name": "Signature",
+   "min": 1,
+   "max": 1,
+   "ref": "ds:Signature"
+  }
+ ],
+ "attributes": [
+  {
+   "name": "version",
+   "required": true,
+   "type": {
+    "base": "decimal"
+   },
+   "fixed": "1.0"
+  }
+ ],
+ "schema": "iecv/LibroCV_v10.xsd",
+ "namespace": "http://www.sii.cl/SiiDte"
+}

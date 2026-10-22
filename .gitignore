@@ -1,0 +1,10 @@
+# Documentos oficiales del SII usados como referencia al desarrollar: se descargan desde sii.cl (ver docs/README.md), no se redistribuyen aquí.
+docs/sii-pdf/
+vendor/
+composer.lock
+bin/
+obj/
+.vs/
+*.pfx
+*.p12
+CAF*.xml

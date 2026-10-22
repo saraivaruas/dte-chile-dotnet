@@ -1,0 +1,6753 @@
+{
+ "name": "DTE",
+ "min": 1,
+ "max": 1,
+ "children": [
+  {
+   "choice": [
+    {
+     "name": "Documento",
+     "min": 1,
+     "max": 1,
+     "children": [
+      {
+       "name": "Encabezado",
+       "min": 1,
+       "max": 1,
+       "children": [
+        {
+         "name": "IdDoc",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "TipoDTE",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "33",
+             "34",
+             "46",
+             "52",
+             "56",
+             "61"
+            ]
+           }
+          },
+          {
+           "name": "Folio",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 10
+           }
+          },
+          {
+           "name": "FchEmis",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "IndNoRebaja",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "1"
+            ]
+           }
+          },
+          {
+           "name": "TipoDespacho",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "1",
+             "2",
+             "3"
+            ]
+           }
+          },
+          {
+           "name": "IndTraslado",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "1",
+             "2",
+             "3",
+             "4",
+             "5",
+             "6",
+             "7",
+             "8",
+             "9"
+            ]
+           }
+          },
+          {
+           "name": "TpoImpresion",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "length": 1,
+            "enum": [
+             "N",
+             "T"
+            ]
+           }
+          },
+          {
+           "name": "IndServicio",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "1",
+             "2",
+             "3"
+            ]
+           }
+          },
+          {
+           "name": "MntBruto",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "enum": [
+             "1"
+            ]
+           }
+          },
+          {
+           "name": "TpoTranCompra",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "minInclusive": "1",
+            "maxInclusive": "7",
+            "enum": [
+             "1",
+             "2",
+             "3",
+             "4",
+             "5",
+             "6",
+             "7"
+            ]
+           }
+          },
+          {
+           "name": "TpoTranVenta",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "minInclusive": "1",
+            "maxInclusive": "4",
+            "enum": [
+             "1",
+             "2",
+             "3",
+             "4"
+            ]
+           }
+          },
+          {
+           "name": "FmaPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "1",
+             "2",
+             "3"
+            ]
+           }
+          },
+          {
+           "name": "FmaPagExp",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 2
+           }
+          },
+          {
+           "name": "FchCancel",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "MntCancel",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "SaldoInsol",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "MntPagos",
+           "min": 0,
+           "max": 30,
+           "children": [
+            {
+             "name": "FchPago",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "date",
+              "minInclusive": "2000-01-01",
+              "maxInclusive": "2050-12-31"
+             }
+            },
+            {
+             "name": "MntPago",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "nonNegativeInteger",
+              "totalDigits": 18
+             }
+            },
+            {
+             "name": "GlosaPagos",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 40
+             }
+            }
+           ]
+          },
+          {
+           "name": "PeriodoDesde",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "PeriodoHasta",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "MedioPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "enum": [
+             "CH",
+             "LT",
+             "EF",
+             "PE",
+             "TC",
+             "CF",
+             "OT"
+            ]
+           }
+          },
+          {
+           "name": "TpoCtaPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 5,
+            "enum": [
+             "AHORRO",
+             "CORRIENTE",
+             "VISTA"
+            ]
+           }
+          },
+          {
+           "name": "NumCtaPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "BcoPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 40
+           }
+          },
+          {
+           "name": "TermPagoCdg",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 4
+           }
+          },
+          {
+           "name": "TermPagoGlosa",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 100
+           }
+          },
+          {
+           "name": "TermPagoDias",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 3
+           }
+          },
+          {
+           "name": "FchVenc",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "TipoFactEsp",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 1,
+            "enum": [
+             "1"
+            ]
+           }
+          }
+         ]
+        },
+        {
+         "name": "Emisor",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "RUTEmisor",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "RznSoc",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 100
+           }
+          },
+          {
+           "name": "GiroEmis",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 80,
+            "minLength": 1
+           }
+          },
+          {
+           "name": "Telefono",
+           "min": 0,
+           "max": 2,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CorreoEmisor",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 80
+           }
+          },
+          {
+           "name": "Acteco",
+           "min": 1,
+           "max": 4,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 6
+           }
+          },
+          {
+           "name": "GuiaExport",
+           "min": 0,
+           "max": 1,
+           "children": [
+            {
+             "name": "CdgTraslado",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 1,
+              "enum": [
+               "1",
+               "2",
+               "3",
+               "4"
+              ]
+             }
+            },
+            {
+             "name": "FolioAut",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "nonNegativeInteger",
+              "totalDigits": 6
+             }
+            },
+            {
+             "name": "FchAut",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "date",
+              "minInclusive": "2000-01-01",
+              "maxInclusive": "2050-12-31"
+             }
+            }
+           ]
+          },
+          {
+           "name": "Sucursal",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CdgSIISucur",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 9
+           }
+          },
+          {
+           "name": "DirOrigen",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 70
+           }
+          },
+          {
+           "name": "CmnaOrigen",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CiudadOrigen",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CdgVendedor",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 60
+           }
+          },
+          {
+           "name": "IdAdicEmisor",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20,
+            "minLength": 1
+           }
+          },
+          {
+           "name": "RUTProveedor",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "RznSocProveedor",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 100
+           }
+          }
+         ]
+        },
+        {
+         "name": "RUTMandante",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 10,
+          "minLength": 3,
+          "pattern": "[0-9]+-([0-9]|K)"
+         }
+        },
+        {
+         "name": "Receptor",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "RUTRecep",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "CdgIntRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "RznSocRecep",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 100
+           }
+          },
+          {
+           "name": "Extranjero",
+           "min": 0,
+           "max": 1,
+           "children": [
+            {
+             "name": "NumId",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 20,
+              "minLength": 1
+             }
+            },
+            {
+             "name": "Nacionalidad",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 3,
+              "minLength": 1
+             }
+            },
+            {
+             "name": "TipoDocID",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "nonNegativeInteger",
+              "enum": [
+               "1",
+               "2"
+              ]
+             }
+            }
+           ]
+          },
+          {
+           "name": "GiroRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 40
+           }
+          },
+          {
+           "name": "Contacto",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 80
+           }
+          },
+          {
+           "name": "CorreoRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 80
+           }
+          },
+          {
+           "name": "DirRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 70
+           }
+          },
+          {
+           "name": "CmnaRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CiudadRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "DirPostal",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 70
+           }
+          },
+          {
+           "name": "CmnaPostal",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CiudadPostal",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          }
+         ]
+        },
+        {
+         "name": "RUTSolicita",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 10,
+          "minLength": 3,
+          "pattern": "[0-9]+-([0-9]|K)"
+         }
+        },
+        {
+         "name": "Transporte",
+         "min": 0,
+         "max": 1,
+         "children": [
+          {
+           "name": "Patente",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 8
+           }
+          },
+          {
+           "name": "PatenteCarro",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 8
+           }
+          },
+          {
+           "name": "RUTTrans",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "Chofer",
+           "min": 0,
+           "max": 1,
+           "children": [
+            {
+             "name": "RUTChofer",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 10,
+              "minLength": 3,
+              "pattern": "[0-9]+-([0-9]|K)"
+             }
+            },
+            {
+             "name": "NombreChofer",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 30
+             }
+            }
+           ]
+          },
+          {
+           "name": "DirDest",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 70
+           }
+          },
+          {
+           "name": "CmnaDest",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CiudadDest",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "Aduana",
+           "min": 0,
+           "max": 1,
+           "children": [
+            {
+             "name": "CodModVenta",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 2
+             }
+            },
+            {
+             "name": "CodClauVenta",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 2
+             }
+            },
+            {
+             "name": "TotClauVenta",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "decimal",
+              "totalDigits": 18,
+              "fractionDigits": 2,
+              "minInclusive": "0.01",
+              "maxInclusive": "9999999999999999.99"
+             }
+            },
+            {
+             "name": "CodViaTransp",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 2
+             }
+            },
+            {
+             "name": "NombreTransp",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 40
+             }
+            },
+            {
+             "name": "RUTCiaTransp",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 10,
+              "minLength": 3,
+              "pattern": "[0-9]+-([0-9]|K)"
+             }
+            },
+            {
+             "name": "NomCiaTransp",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 40
+             }
+            },
+            {
+             "name": "IdAdicTransp",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 20,
+              "minLength": 1
+             }
+            },
+            {
+             "name": "Booking",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 20,
+              "minLength": 1
+             }
+            },
+            {
+             "name": "Operador",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 20,
+              "minLength": 1
+             }
+            },
+            {
+             "name": "CodPtoEmbarque",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 4
+             }
+            },
+            {
+             "name": "IdAdicPtoEmb",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 20,
+              "minLength": 1
+             }
+            },
+            {
+             "name": "CodPtoDesemb",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 4
+             }
+            },
+            {
+             "name": "IdAdicPtoDesemb",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 20,
+              "minLength": 1
+             }
+            },
+            {
+             "name": "Tara",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 7
+             }
+            },
+            {
+             "name": "CodUnidMedTara",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 2
+             }
+            },
+            {
+             "name": "PesoBruto",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "decimal",
+              "totalDigits": 10,
+              "fractionDigits": 2
+             }
+            },
+            {
+             "name": "CodUnidPesoBruto",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 2
+             }
+            },
+            {
+             "name": "PesoNeto",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "decimal",
+              "totalDigits": 10,
+              "fractionDigits": 2
+             }
+            },
+            {
+             "name": "CodUnidPesoNeto",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 2
+             }
+            },
+            {
+             "name": "TotItems",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 18
+             }
+            },
+            {
+             "name": "TotBultos",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 18
+             }
+            },
+            {
+             "name": "TipoBultos",
+             "min": 0,
+             "max": 10,
+             "children": [
+              {
+               "name": "CodTpoBultos",
+               "min": 0,
+               "max": 1,
+               "type": {
+                "base": "positiveInteger",
+                "totalDigits": 3
+               }
+              },
+              {
+               "name": "CantBultos",
+               "min": 0,
+               "max": 1,
+               "type": {
+                "base": "positiveInteger",
+                "totalDigits": 10
+               }
+              },
+              {
+               "name": "Marcas",
+               "min": 0,
+               "max": 1,
+               "type": {
+                "base": "string",
+                "maxLength": 255
+               }
+              },
+              {
+               "name": "IdContainer",
+               "min": 0,
+               "max": 1,
+               "type": {
+                "base": "string",
+                "maxLength": 25
+               }
+              },
+              {
+               "name": "Sello",
+               "min": 0,
+               "max": 1,
+               "type": {
+                "base": "string",
+                "maxLength": 20
+               }
+              },
+              {
+               "name": "EmisorSello",
+               "min": 0,
+               "max": 1,
+               "type": {
+                "base": "string",
+                "maxLength": 70
+               }
+              }
+             ]
+            },
+            {
+             "name": "MntFlete",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "decimal",
+              "totalDigits": 18,
+              "fractionDigits": 4,
+              "minInclusive": "0.0001",
+              "maxInclusive": "99999999999999.9999"
+             }
+            },
+            {
+             "name": "MntSeguro",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "decimal",
+              "totalDigits": 18,
+              "fractionDigits": 4,
+              "minInclusive": "0.0001",
+              "maxInclusive": "99999999999999.9999"
+             }
+            },
+            {
+             "name": "CodPaisRecep",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 3
+             }
+            },
+            {
+             "name": "CodPaisDestin",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 3
+             }
+            }
+           ]
+          },
+          {
+           "name": "FchSalida",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2003-04-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "HraSalida",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "time",
+            "minInclusive": "00:00:00",
+            "maxInclusive": "23:59:59"
+           }
+          },
+          {
+           "name": "FchLlegada",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2003-04-01",
+            "maxInclusive": "2050-12-31"
+           }
+          }
+         ]
+        },
+        {
+         "name": "Totales",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "MntNeto",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "MntExe",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "MntBase",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "MntMargenCom",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TasaIVA",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 5,
+            "fractionDigits": 2,
+            "minInclusive": "0.01",
+            "maxInclusive": "999.99"
+           }
+          },
+          {
+           "name": "IVA",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "IVAProp",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "IVATerc",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "ImptoReten",
+           "min": 0,
+           "max": 20,
+           "children": [
+            {
+             "name": "TipoImp",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 3,
+              "enum": [
+               "14",
+               "15",
+               "16",
+               "17",
+               "18",
+               "19",
+               "23",
+               "24",
+               "25",
+               "26",
+               "27",
+               "28",
+               "30",
+               "31",
+               "32",
+               "33",
+               "34",
+               "35",
+               "36",
+               "37",
+               "38",
+               "39",
+               "40",
+               "41",
+               "44",
+               "45",
+               "46",
+               "47",
+               "48",
+               "49",
+               "50",
+               "51",
+               "52",
+               "53",
+               "54",
+               "55",
+               "271",
+               "301",
+               "321",
+               "331",
+               "341",
+               "361",
+               "371",
+               "481"
+              ]
+             }
+            },
+            {
+             "name": "TasaImp",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "decimal",
+              "totalDigits": 5,
+              "fractionDigits": 2,
+              "minInclusive": "0.01",
+              "maxInclusive": "100.00"
+             }
+            },
+            {
+             "name": "MontoImp",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "integer",
+              "totalDigits": 18
+             }
+            }
+           ]
+          },
+          {
+           "name": "IVANoRet",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "CredEC",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "GrntDep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "Comisiones",
+           "min": 0,
+           "max": 1,
+           "children": [
+            {
+             "name": "ValComNeto",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "nonNegativeInteger",
+              "totalDigits": 18
+             }
+            },
+            {
+             "name": "ValComExe",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "nonNegativeInteger",
+              "totalDigits": 18
+             }
+            },
+            {
+             "name": "ValComIVA",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "nonNegativeInteger",
+              "totalDigits": 18
+             }
+            }
+           ]
+          },
+          {
+           "name": "MntTotal",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "MontoNF",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "MontoPeriodo",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "SaldoAnterior",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "VlrPagar",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          }
+         ]
+        },
+        {
+         "name": "OtraMoneda",
+         "min": 0,
+         "max": 1,
+         "children": [
+          {
+           "name": "TpoMoneda",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 15,
+            "enum": [
+             "BOLIVAR",
+             "BOLIVIANO",
+             "CHELIN",
+             "CORONA DIN",
+             "CORONA NOR",
+             "CORONA SC",
+             "CRUZEIRO REAL",
+             "DIRHAM",
+             "DOLAR AUST",
+             "DOLAR CAN",
+             "DOLAR HK",
+             "DOLAR NZ",
+             "DOLAR SIN",
+             "DOLAR TAI",
+             "DOLAR USA",
+             "DRACMA",
+             "ESCUDO",
+             "EURO",
+             "FLORIN",
+             "FRANCO BEL",
+             "FRANCO FR",
+             "FRANCO SZ",
+             "GUARANI",
+             "LIBRA EST",
+             "LIRA",
+             "MARCO AL",
+             "MARCO FIN",
+             "NUEVO SOL",
+             "OTRAS MONEDAS",
+             "PESETA",
+             "PESO",
+             "PESO CL",
+             "PESO COL",
+             "PESO MEX",
+             "PESO URUG",
+             "RAND",
+             "RENMINBI",
+             "RUPIA",
+             "SUCRE",
+             "YEN"
+            ]
+           }
+          },
+          {
+           "name": "TpoCambio",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 10,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "999999.9999"
+           }
+          },
+          {
+           "name": "MntNetoOtrMnda",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "99999999999999.9999"
+           }
+          },
+          {
+           "name": "MntExeOtrMnda",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "99999999999999.9999"
+           }
+          },
+          {
+           "name": "MntFaeCarneOtrMnda",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "99999999999999.9999"
+           }
+          },
+          {
+           "name": "MntMargComOtrMnda",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "99999999999999.9999"
+           }
+          },
+          {
+           "name": "IVAOtrMnda",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "99999999999999.9999"
+           }
+          },
+          {
+           "name": "ImpRetOtrMnda",
+           "min": 0,
+           "max": 20,
+           "children": [
+            {
+             "name": "TipoImpOtrMnda",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 3,
+              "enum": [
+               "14",
+               "15",
+               "16",
+               "17",
+               "18",
+               "19",
+               "23",
+               "24",
+               "25",
+               "26",
+               "27",
+               "28",
+               "30",
+               "31",
+               "32",
+               "33",
+               "34",
+               "35",
+               "36",
+               "37",
+               "38",
+               "39",
+               "40",
+               "41",
+               "44",
+               "45",
+               "46",
+               "47",
+               "48",
+               "49",
+               "50",
+               "51",
+               "52",
+               "53",
+               "54",
+               "55",
+               "271",
+               "301",
+               "321",
+               "331",
+               "341",
+               "361",
+               "371",
+               "481"
+              ]
+             }
+            },
+            {
+             "name": "TasaImpOtrMnda",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "decimal",
+              "totalDigits": 5,
+              "fractionDigits": 2,
+              "minInclusive": "0.01",
+              "maxInclusive": "999.99"
+             }
+            },
+            {
+             "name": "VlrImpOtrMnda",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "decimal",
+              "totalDigits": 18,
+              "fractionDigits": 4,
+              "minInclusive": "0.0001",
+              "maxInclusive": "99999999999999.9999"
+             }
+            }
+           ]
+          },
+          {
+           "name": "IVANoRetOtrMnda",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "99999999999999.9999"
+           }
+          },
+          {
+           "name": "MntTotOtrMnda",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "99999999999999.9999"
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Detalle",
+       "min": 1,
+       "max": 60,
+       "children": [
+        {
+         "name": "NroLinDet",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "99"
+         }
+        },
+        {
+         "name": "CdgItem",
+         "min": 0,
+         "max": 5,
+         "children": [
+          {
+           "name": "TpoCodigo",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10
+           }
+          },
+          {
+           "name": "VlrCodigo",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 35
+           }
+          }
+         ]
+        },
+        {
+         "name": "IndExe",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "1",
+           "2",
+           "3",
+           "4",
+           "5",
+           "6"
+          ]
+         }
+        },
+        {
+         "name": "Retenedor",
+         "min": 0,
+         "max": 1,
+         "children": [
+          {
+           "name": "IndAgente",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 1,
+            "enum": [
+             "R"
+            ]
+           }
+          },
+          {
+           "name": "MntBaseFaena",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "MntMargComer",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "PrcConsFinal",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          }
+         ]
+        },
+        {
+         "name": "NmbItem",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 80
+         }
+        },
+        {
+         "name": "DscItem",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 1000
+         }
+        },
+        {
+         "name": "QtyRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 6,
+          "minInclusive": "0.000001",
+          "maxInclusive": "999999999999.999999"
+         }
+        },
+        {
+         "name": "UnmdRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 4
+         }
+        },
+        {
+         "name": "PrcRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 6,
+          "minInclusive": "0.000001",
+          "maxInclusive": "999999999999.999999"
+         }
+        },
+        {
+         "name": "QtyItem",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 6,
+          "minInclusive": "0.000001",
+          "maxInclusive": "999999999999.999999"
+         }
+        },
+        {
+         "name": "Subcantidad",
+         "min": 0,
+         "max": 5,
+         "children": [
+          {
+           "name": "SubQty",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 6,
+            "minInclusive": "0.000001",
+            "maxInclusive": "999999999999.999999"
+           }
+          },
+          {
+           "name": "SubCod",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 35
+           }
+          }
+         ]
+        },
+        {
+         "name": "FchElabor",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "date",
+          "minInclusive": "2000-01-01",
+          "maxInclusive": "2050-12-31"
+         }
+        },
+        {
+         "name": "FchVencim",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "date",
+          "minInclusive": "2000-01-01",
+          "maxInclusive": "2050-12-31"
+         }
+        },
+        {
+         "name": "UnmdItem",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 4
+         }
+        },
+        {
+         "name": "PrcItem",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 6,
+          "minInclusive": "0.000001",
+          "maxInclusive": "999999999999.999999"
+         }
+        },
+        {
+         "name": "OtrMnda",
+         "min": 0,
+         "max": 1,
+         "children": [
+          {
+           "name": "PrcOtrMon",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 6,
+            "minInclusive": "0.000001",
+            "maxInclusive": "999999999999.999999"
+           }
+          },
+          {
+           "name": "Moneda",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 3
+           }
+          },
+          {
+           "name": "FctConv",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 10,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "999999.9999"
+           }
+          },
+          {
+           "name": "DctoOtrMnda",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "99999999999999.9999"
+           }
+          },
+          {
+           "name": "RecargoOtrMnda",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "99999999999999.9999"
+           }
+          },
+          {
+           "name": "MontoItemOtrMnda",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "99999999999999.9999"
+           }
+          }
+         ]
+        },
+        {
+         "name": "DescuentoPct",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 5,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "999.99"
+         }
+        },
+        {
+         "name": "DescuentoMonto",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "SubDscto",
+         "min": 0,
+         "max": 5,
+         "children": [
+          {
+           "name": "TipoDscto",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "minLength": 1,
+            "maxLength": 1,
+            "enum": [
+             "%",
+             "$"
+            ]
+           }
+          },
+          {
+           "name": "ValorDscto",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 2,
+            "minInclusive": "0.01",
+            "maxInclusive": "9999999999999999.99"
+           }
+          }
+         ]
+        },
+        {
+         "name": "RecargoPct",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 5,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "999.99"
+         }
+        },
+        {
+         "name": "RecargoMonto",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "SubRecargo",
+         "min": 0,
+         "max": 5,
+         "children": [
+          {
+           "name": "TipoRecargo",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "minLength": 1,
+            "maxLength": 1,
+            "enum": [
+             "%",
+             "$"
+            ]
+           }
+          },
+          {
+           "name": "ValorRecargo",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 2,
+            "minInclusive": "0.01",
+            "maxInclusive": "9999999999999999.99"
+           }
+          }
+         ]
+        },
+        {
+         "name": "CodImpAdic",
+         "min": 0,
+         "max": 2,
+         "type": {
+          "base": "string",
+          "maxLength": 3,
+          "enum": [
+           "14",
+           "15",
+           "16",
+           "17",
+           "18",
+           "19",
+           "23",
+           "24",
+           "25",
+           "26",
+           "27",
+           "28",
+           "30",
+           "31",
+           "32",
+           "33",
+           "34",
+           "35",
+           "36",
+           "37",
+           "38",
+           "39",
+           "40",
+           "41",
+           "44",
+           "45",
+           "46",
+           "47",
+           "48",
+           "49",
+           "50",
+           "51",
+           "52",
+           "53",
+           "54",
+           "55",
+           "271",
+           "301",
+           "321",
+           "331",
+           "341",
+           "361",
+           "371",
+           "481"
+          ]
+         }
+        },
+        {
+         "name": "MontoItem",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        }
+       ]
+      },
+      {
+       "name": "SubTotInfo",
+       "min": 0,
+       "max": 20,
+       "children": [
+        {
+         "name": "NroSTI",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "99"
+         }
+        },
+        {
+         "name": "GlosaSTI",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 40
+         }
+        },
+        {
+         "name": "OrdenSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "99"
+         }
+        },
+        {
+         "name": "SubTotNetoSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "SubTotIVASTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "SubTotAdicSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "SubTotExeSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "ValSubtotSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "LineasDeta",
+         "min": 0,
+         "max": 60,
+         "type": {
+          "base": "positiveInteger"
+         }
+        }
+       ]
+      },
+      {
+       "name": "DscRcgGlobal",
+       "min": 0,
+       "max": 20,
+       "children": [
+        {
+         "name": "NroLinDR",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger"
+         }
+        },
+        {
+         "name": "TpoMov",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "minLength": 1,
+          "maxLength": 1,
+          "enum": [
+           "D",
+           "R"
+          ]
+         }
+        },
+        {
+         "name": "GlosaDR",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 45
+         }
+        },
+        {
+         "name": "TpoValor",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "minLength": 1,
+          "maxLength": 1,
+          "enum": [
+           "%",
+           "$"
+          ]
+         }
+        },
+        {
+         "name": "ValorDR",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "ValorDROtrMnda",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 4,
+          "minInclusive": "0.0001",
+          "maxInclusive": "99999999999999.9999"
+         }
+        },
+        {
+         "name": "IndExeDR",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "1",
+           "2"
+          ]
+         }
+        }
+       ]
+      },
+      {
+       "name": "Referencia",
+       "min": 0,
+       "max": 40,
+       "children": [
+        {
+         "name": "NroLinRef",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "99"
+         }
+        },
+        {
+         "name": "TpoDocRef",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 3,
+          "minLength": 1
+         }
+        },
+        {
+         "name": "IndGlobal",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 1,
+          "enum": [
+           "1"
+          ]
+         }
+        },
+        {
+         "name": "FolioRef",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 18,
+          "minLength": 1
+         }
+        },
+        {
+         "name": "RUTOtr",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 10,
+          "minLength": 3,
+          "pattern": "[0-9]+-([0-9]|K)"
+         }
+        },
+        {
+         "name": "FchRef",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "date",
+          "minInclusive": "2000-01-01",
+          "maxInclusive": "2050-12-31"
+         }
+        },
+        {
+         "name": "CodRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "1",
+           "2",
+           "3"
+          ]
+         }
+        },
+        {
+         "name": "RazonRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 90
+         }
+        }
+       ]
+      },
+      {
+       "name": "GeoRefEmision",
+       "min": 0,
+       "max": 1,
+       "children": [
+        {
+         "name": "LatitudEmision",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 30
+         }
+        },
+        {
+         "name": "LongitudEmision",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 30
+         }
+        },
+        {
+         "name": "SistemaReferencia",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "9"
+         }
+        }
+       ]
+      },
+      {
+       "name": "ManejoMadera",
+       "min": 0,
+       "max": 1,
+       "children": [
+        {
+         "name": "ComunaRolOrigen",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 6
+         }
+        },
+        {
+         "name": "MnzRolOrigen",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 6
+         }
+        },
+        {
+         "name": "PrdRolOrigen",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 6
+         }
+        },
+        {
+         "name": "ComunaRolDestino",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 6
+         }
+        },
+        {
+         "name": "MnzRolDestino",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 6
+         }
+        },
+        {
+         "name": "PrdRolDestino",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 6
+         }
+        },
+        {
+         "name": "CodPlanConaf",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 40
+         }
+        },
+        {
+         "name": "AvisoEjecucionFaena",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 40
+         }
+        },
+        {
+         "name": "LatitudOrigenMadera",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 30
+         }
+        },
+        {
+         "name": "LongitudOrigenMadera",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 30
+         }
+        },
+        {
+         "name": "LatitudDestinoMadera",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 30
+         }
+        },
+        {
+         "name": "LongitudDestinoMadera",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 30
+         }
+        },
+        {
+         "name": "SistemareferenciaMadera",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 1
+         }
+        }
+       ]
+      },
+      {
+       "name": "Comisiones",
+       "min": 0,
+       "max": 20,
+       "children": [
+        {
+         "name": "NroLinCom",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "20",
+          "minInclusive": "1"
+         }
+        },
+        {
+         "name": "TipoMovim",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "minLength": 1,
+          "enum": [
+           "C",
+           "O"
+          ]
+         }
+        },
+        {
+         "name": "Glosa",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 60,
+          "minLength": 1
+         }
+        },
+        {
+         "name": "TasaComision",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 5,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "999.99"
+         }
+        },
+        {
+         "name": "ValComNeto",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "ValComExe",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "ValComIVA",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        }
+       ]
+      },
+      {
+       "name": "TED",
+       "min": 1,
+       "max": 1,
+       "children": [
+        {
+         "name": "DD",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "RE",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "TD",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "33",
+             "34",
+             "46",
+             "52",
+             "56",
+             "61"
+            ]
+           }
+          },
+          {
+           "name": "F",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 10
+           }
+          },
+          {
+           "name": "FE",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "RR",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "RSR",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "minLength": 1,
+            "maxLength": 40
+           }
+          },
+          {
+           "name": "MNT",
+           "min": 1,
+           "max": 1
+          },
+          {
+           "name": "IT1",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "minLength": 1,
+            "maxLength": 40
+           }
+          },
+          {
+           "name": "CAF",
+           "min": 1,
+           "max": 1,
+           "children": [
+            {
+             "name": "DA",
+             "min": 1,
+             "max": 1,
+             "children": [
+              {
+               "name": "RE",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "string",
+                "maxLength": 10,
+                "minLength": 3,
+                "pattern": "[0-9]+-([0-9]|K)"
+               }
+              },
+              {
+               "name": "RS",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "string",
+                "minLength": 1,
+                "maxLength": 40
+               }
+              },
+              {
+               "name": "TD",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "positiveInteger",
+                "enum": [
+                 "33",
+                 "34",
+                 "46",
+                 "52",
+                 "56",
+                 "61"
+                ]
+               }
+              },
+              {
+               "name": "RNG",
+               "min": 1,
+               "max": 1,
+               "children": [
+                {
+                 "name": "D",
+                 "min": 1,
+                 "max": 1,
+                 "type": {
+                  "base": "positiveInteger",
+                  "totalDigits": 10
+                 }
+                },
+                {
+                 "name": "H",
+                 "min": 1,
+                 "max": 1,
+                 "type": {
+                  "base": "positiveInteger",
+                  "totalDigits": 10
+                 }
+                }
+               ]
+              },
+              {
+               "name": "FA",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "date",
+                "minInclusive": "2000-01-01",
+                "maxInclusive": "2050-12-31"
+               }
+              },
+              {
+               "choice": [
+                {
+                 "name": "RSAPK",
+                 "min": 1,
+                 "max": 1,
+                 "children": [
+                  {
+                   "name": "M",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  },
+                  {
+                   "name": "E",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  }
+                 ]
+                },
+                {
+                 "name": "DSAPK",
+                 "min": 1,
+                 "max": 1,
+                 "children": [
+                  {
+                   "name": "P",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  },
+                  {
+                   "name": "Q",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  },
+                  {
+                   "name": "G",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  },
+                  {
+                   "name": "Y",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  }
+                 ]
+                }
+               ],
+               "min": 1,
+               "max": 1
+              },
+              {
+               "name": "IDK",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "long"
+               }
+              }
+             ]
+            },
+            {
+             "name": "FRMA",
+             "min": 1,
+             "max": 1
+            }
+           ],
+           "attributes": [
+            {
+             "name": "version",
+             "required": true,
+             "type": null,
+             "fixed": "1.0"
+            }
+           ]
+          },
+          {
+           "name": "TSTED",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "dateTime",
+            "minInclusive": "2000-01-01T00:00:00",
+            "maxInclusive": "2050-12-31T23:59:59"
+           }
+          }
+         ]
+        },
+        {
+         "name": "FRMT",
+         "min": 1,
+         "max": 1
+        }
+       ],
+       "attributes": [
+        {
+         "name": "version",
+         "required": true,
+         "type": null,
+         "fixed": "1.0"
+        }
+       ]
+      },
+      {
+       "name": "TmstFirma",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "dateTime",
+        "minInclusive": "2000-01-01T00:00:00",
+        "maxInclusive": "2050-12-31T23:59:59"
+       }
+      }
+     ],
+     "attributes": [
+      {
+       "name": "ID",
+       "required": true,
+       "type": {
+        "base": "ID"
+       },
+       "fixed": null
+      }
+     ]
+    },
+    {
+     "name": "Liquidacion",
+     "min": 1,
+     "max": 1,
+     "children": [
+      {
+       "name": "Encabezado",
+       "min": 1,
+       "max": 1,
+       "children": [
+        {
+         "name": "IdDoc",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "TipoDTE",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "43"
+            ]
+           }
+          },
+          {
+           "name": "Folio",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 10
+           }
+          },
+          {
+           "name": "FchEmis",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "IndServicio",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "1",
+             "2",
+             "3"
+            ]
+           }
+          },
+          {
+           "name": "MntBruto",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "enum": [
+             "1"
+            ]
+           }
+          },
+          {
+           "name": "TpoTranCompra",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "minInclusive": "1",
+            "maxInclusive": "7",
+            "enum": [
+             "1",
+             "2",
+             "3",
+             "4",
+             "5",
+             "6",
+             "7"
+            ]
+           }
+          },
+          {
+           "name": "TpoTranVenta",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "minInclusive": "1",
+            "maxInclusive": "4",
+            "enum": [
+             "1",
+             "2",
+             "3",
+             "4"
+            ]
+           }
+          },
+          {
+           "name": "FmaPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "1",
+             "2",
+             "3"
+            ]
+           }
+          },
+          {
+           "name": "FchCancel",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "MntCancel",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "SaldoInsol",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "MntPagos",
+           "min": 0,
+           "max": 30,
+           "children": [
+            {
+             "name": "FchPago",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "date",
+              "minInclusive": "2000-01-01",
+              "maxInclusive": "2050-12-31"
+             }
+            },
+            {
+             "name": "MntPago",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "nonNegativeInteger",
+              "totalDigits": 18
+             }
+            },
+            {
+             "name": "GlosaPagos",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 40
+             }
+            }
+           ]
+          },
+          {
+           "name": "PeriodoDesde",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "PeriodoHasta",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "MedioPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "enum": [
+             "CH",
+             "LT",
+             "EF",
+             "PE",
+             "TC",
+             "CF",
+             "OT"
+            ]
+           }
+          },
+          {
+           "name": "TpoCtaPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 5,
+            "enum": [
+             "AHORRO",
+             "CORRIENTE",
+             "VISTA"
+            ]
+           }
+          },
+          {
+           "name": "NumCtaPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "BcoPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 40
+           }
+          },
+          {
+           "name": "TermPagoCdg",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 4
+           }
+          },
+          {
+           "name": "TermPagoGlosa",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 100
+           }
+          },
+          {
+           "name": "TermPagoDias",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 3
+           }
+          },
+          {
+           "name": "FchVenc",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          }
+         ]
+        },
+        {
+         "name": "Emisor",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "RUTEmisor",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "RznSoc",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 100,
+            "minLength": 1
+           }
+          },
+          {
+           "name": "GiroEmis",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 80,
+            "minLength": 1
+           }
+          },
+          {
+           "name": "Telefono",
+           "min": 0,
+           "max": 2,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CorreoEmisor",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 80
+           }
+          },
+          {
+           "name": "Acteco",
+           "min": 1,
+           "max": 4,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 6
+           }
+          },
+          {
+           "name": "Sucursal",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CdgSIISucur",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 9
+           }
+          },
+          {
+           "name": "DirOrigen",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 70
+           }
+          },
+          {
+           "name": "CmnaOrigen",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CiudadOrigen",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CdgVendedor",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 60
+           }
+          }
+         ]
+        },
+        {
+         "name": "Receptor",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "RUTRecep",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "CdgIntRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "RznSocRecep",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 100
+           }
+          },
+          {
+           "name": "GiroRecep",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 40
+           }
+          },
+          {
+           "name": "Contacto",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 80
+           }
+          },
+          {
+           "name": "CorreoRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 80
+           }
+          },
+          {
+           "name": "DirRecep",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 70
+           }
+          },
+          {
+           "name": "CmnaRecep",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CiudadRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "DirPostal",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 70
+           }
+          },
+          {
+           "name": "CmnaPostal",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CiudadPostal",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          }
+         ]
+        },
+        {
+         "name": "Totales",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "MntNeto",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "MntExe",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "TasaIVA",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 5,
+            "fractionDigits": 2,
+            "minInclusive": "0.01",
+            "maxInclusive": "999.99"
+           }
+          },
+          {
+           "name": "IVA",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "IVAProp",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "IVATerc",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "ImptoReten",
+           "min": 0,
+           "max": 20,
+           "children": [
+            {
+             "name": "TipoImp",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 3,
+              "enum": [
+               "14",
+               "15",
+               "16",
+               "17",
+               "18",
+               "19",
+               "23",
+               "24",
+               "25",
+               "26",
+               "27",
+               "28",
+               "30",
+               "31",
+               "32",
+               "33",
+               "34",
+               "35",
+               "36",
+               "37",
+               "38",
+               "39",
+               "40",
+               "41",
+               "44",
+               "45",
+               "46",
+               "47",
+               "48",
+               "49",
+               "50",
+               "51",
+               "52",
+               "53",
+               "54",
+               "55",
+               "271",
+               "301",
+               "321",
+               "331",
+               "341",
+               "361",
+               "371",
+               "481"
+              ]
+             }
+            },
+            {
+             "name": "TasaImp",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "decimal",
+              "totalDigits": 5,
+              "fractionDigits": 2,
+              "minInclusive": "0.01",
+              "maxInclusive": "999.99"
+             }
+            },
+            {
+             "name": "MontoImp",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "integer",
+              "totalDigits": 18
+             }
+            }
+           ]
+          },
+          {
+           "name": "Comisiones",
+           "min": 0,
+           "max": 1,
+           "children": [
+            {
+             "name": "ValComNeto",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "integer",
+              "totalDigits": 18
+             }
+            },
+            {
+             "name": "ValComExe",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "integer",
+              "totalDigits": 18
+             }
+            },
+            {
+             "name": "ValComIVA",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "integer",
+              "totalDigits": 18
+             }
+            }
+           ]
+          },
+          {
+           "name": "MntTotal",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "MontoPeriodo",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "SaldoAnterior",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "VlrPagar",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Detalle",
+       "min": 1,
+       "max": 60,
+       "children": [
+        {
+         "name": "NroLinDet",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "99"
+         }
+        },
+        {
+         "name": "CdgItem",
+         "min": 0,
+         "max": 5,
+         "children": [
+          {
+           "name": "TpoCodigo",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10
+           }
+          },
+          {
+           "name": "VlrCodigo",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 35
+           }
+          }
+         ]
+        },
+        {
+         "name": "TpoDocLiq",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "minLength": 1,
+          "maxLength": 3
+         }
+        },
+        {
+         "name": "IndExe",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "1",
+           "2",
+           "3",
+           "4",
+           "5",
+           "6"
+          ]
+         }
+        },
+        {
+         "name": "NmbItem",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 80
+         }
+        },
+        {
+         "name": "DscItem",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 1000
+         }
+        },
+        {
+         "name": "QtyRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 6,
+          "minInclusive": "0.000001",
+          "maxInclusive": "999999999999.999999"
+         }
+        },
+        {
+         "name": "UnmdRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 4
+         }
+        },
+        {
+         "name": "PrcRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 6,
+          "minInclusive": "0.000001",
+          "maxInclusive": "999999999999.999999"
+         }
+        },
+        {
+         "name": "QtyItem",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 6,
+          "minInclusive": "0.000001",
+          "maxInclusive": "999999999999.999999"
+         }
+        },
+        {
+         "name": "Subcantidad",
+         "min": 0,
+         "max": 5,
+         "children": [
+          {
+           "name": "SubQty",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 6,
+            "minInclusive": "0.000001",
+            "maxInclusive": "999999999999.999999"
+           }
+          },
+          {
+           "name": "SubCod",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 35
+           }
+          }
+         ]
+        },
+        {
+         "name": "FchElabor",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "date",
+          "minInclusive": "2000-01-01",
+          "maxInclusive": "2050-12-31"
+         }
+        },
+        {
+         "name": "FchVencim",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "date",
+          "minInclusive": "2000-01-01",
+          "maxInclusive": "2050-12-31"
+         }
+        },
+        {
+         "name": "UnmdItem",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 4
+         }
+        },
+        {
+         "name": "PrcItem",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 6,
+          "minInclusive": "0.000001",
+          "maxInclusive": "999999999999.999999"
+         }
+        },
+        {
+         "name": "CodImpAdic",
+         "min": 0,
+         "max": 2,
+         "type": {
+          "base": "string",
+          "maxLength": 3,
+          "enum": [
+           "14",
+           "15",
+           "16",
+           "17",
+           "18",
+           "19",
+           "23",
+           "24",
+           "25",
+           "26",
+           "27",
+           "28",
+           "30",
+           "31",
+           "32",
+           "33",
+           "34",
+           "35",
+           "36",
+           "37",
+           "38",
+           "39",
+           "40",
+           "41",
+           "44",
+           "45",
+           "46",
+           "47",
+           "48",
+           "49",
+           "50",
+           "51",
+           "52",
+           "53",
+           "54",
+           "55",
+           "271",
+           "301",
+           "321",
+           "331",
+           "341",
+           "361",
+           "371",
+           "481"
+          ]
+         }
+        },
+        {
+         "name": "MontoItem",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        }
+       ]
+      },
+      {
+       "name": "SubTotInfo",
+       "min": 0,
+       "max": 20,
+       "children": [
+        {
+         "name": "NroSTI",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "99"
+         }
+        },
+        {
+         "name": "GlosaSTI",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 40
+         }
+        },
+        {
+         "name": "OrdenSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "99"
+         }
+        },
+        {
+         "name": "SubTotNetoSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "SubTotIVASTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "SubTotAdicSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "SubTotExeSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "ValSubtotSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "LineasDeta",
+         "min": 0,
+         "max": 60,
+         "type": {
+          "base": "positiveInteger"
+         }
+        }
+       ]
+      },
+      {
+       "name": "Referencia",
+       "min": 0,
+       "max": 40,
+       "children": [
+        {
+         "name": "NroLinRef",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "99"
+         }
+        },
+        {
+         "name": "TpoDocRef",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 3,
+          "minLength": 1
+         }
+        },
+        {
+         "name": "IndGlobal",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 1,
+          "enum": [
+           "1"
+          ]
+         }
+        },
+        {
+         "name": "FolioRef",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 18,
+          "minLength": 1
+         }
+        },
+        {
+         "name": "FchRef",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "date",
+          "minInclusive": "2000-01-01",
+          "maxInclusive": "2050-12-31"
+         }
+        },
+        {
+         "name": "CodRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "1",
+           "2",
+           "3"
+          ]
+         }
+        },
+        {
+         "name": "RazonRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 90
+         }
+        }
+       ]
+      },
+      {
+       "name": "Comisiones",
+       "min": 0,
+       "max": 20,
+       "children": [
+        {
+         "name": "NroLinCom",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "20",
+          "totalDigits": 2
+         }
+        },
+        {
+         "name": "TipoMovim",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "minLength": 1,
+          "maxLength": 1,
+          "enum": [
+           "C",
+           "O"
+          ]
+         }
+        },
+        {
+         "name": "Glosa",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 60,
+          "minLength": 1
+         }
+        },
+        {
+         "name": "TasaComision",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 5,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "999.99"
+         }
+        },
+        {
+         "name": "ValComNeto",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "ValComExe",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "ValComIVA",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        }
+       ]
+      },
+      {
+       "name": "TED",
+       "min": 1,
+       "max": 1,
+       "children": [
+        {
+         "name": "DD",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "RE",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "TD",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "43"
+            ]
+           }
+          },
+          {
+           "name": "F",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 10
+           }
+          },
+          {
+           "name": "FE",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "RR",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "RSR",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "minLength": 1,
+            "maxLength": 40
+           }
+          },
+          {
+           "name": "MNT",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "integer",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "IT1",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "minLength": 1,
+            "maxLength": 40
+           }
+          },
+          {
+           "name": "CAF",
+           "min": 1,
+           "max": 1,
+           "children": [
+            {
+             "name": "DA",
+             "min": 1,
+             "max": 1,
+             "children": [
+              {
+               "name": "RE",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "string",
+                "maxLength": 10,
+                "minLength": 3,
+                "pattern": "[0-9]+-([0-9]|K)"
+               }
+              },
+              {
+               "name": "RS",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "string",
+                "maxLength": 40,
+                "minLength": 1
+               }
+              },
+              {
+               "name": "TD",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "positiveInteger",
+                "enum": [
+                 "43"
+                ]
+               }
+              },
+              {
+               "name": "RNG",
+               "min": 1,
+               "max": 1,
+               "children": [
+                {
+                 "name": "D",
+                 "min": 1,
+                 "max": 1,
+                 "type": {
+                  "base": "positiveInteger",
+                  "totalDigits": 10
+                 }
+                },
+                {
+                 "name": "H",
+                 "min": 1,
+                 "max": 1,
+                 "type": {
+                  "base": "positiveInteger",
+                  "totalDigits": 10
+                 }
+                }
+               ]
+              },
+              {
+               "name": "FA",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "date",
+                "minInclusive": "2000-01-01",
+                "maxInclusive": "2050-12-31"
+               }
+              },
+              {
+               "choice": [
+                {
+                 "name": "RSAPK",
+                 "min": 1,
+                 "max": 1,
+                 "children": [
+                  {
+                   "name": "M",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  },
+                  {
+                   "name": "E",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  }
+                 ]
+                },
+                {
+                 "name": "DSAPK",
+                 "min": 1,
+                 "max": 1,
+                 "children": [
+                  {
+                   "name": "P",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  },
+                  {
+                   "name": "Q",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  },
+                  {
+                   "name": "G",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  },
+                  {
+                   "name": "Y",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  }
+                 ]
+                }
+               ],
+               "min": 1,
+               "max": 1
+              },
+              {
+               "name": "IDK",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "long"
+               }
+              }
+             ]
+            },
+            {
+             "name": "FRMA",
+             "min": 1,
+             "max": 1
+            }
+           ],
+           "attributes": [
+            {
+             "name": "version",
+             "required": true,
+             "type": null,
+             "fixed": "1.0"
+            }
+           ]
+          },
+          {
+           "name": "TSTED",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "dateTime",
+            "minInclusive": "2000-01-01T00:00:00",
+            "maxInclusive": "2050-12-31T23:59:59"
+           }
+          }
+         ]
+        },
+        {
+         "name": "FRMT",
+         "min": 1,
+         "max": 1
+        }
+       ],
+       "attributes": [
+        {
+         "name": "version",
+         "required": true,
+         "type": null,
+         "fixed": "1.0"
+        }
+       ]
+      },
+      {
+       "name": "TmstFirma",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "dateTime",
+        "minInclusive": "2000-01-01T00:00:00",
+        "maxInclusive": "2050-12-31T23:59:59"
+       }
+      }
+     ],
+     "attributes": [
+      {
+       "name": "ID",
+       "required": true,
+       "type": {
+        "base": "ID"
+       },
+       "fixed": null
+      }
+     ]
+    },
+    {
+     "name": "Exportaciones",
+     "min": 1,
+     "max": 1,
+     "children": [
+      {
+       "name": "Encabezado",
+       "min": 1,
+       "max": 1,
+       "children": [
+        {
+         "name": "IdDoc",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "TipoDTE",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "110",
+             "111",
+             "112"
+            ]
+           }
+          },
+          {
+           "name": "Folio",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 10
+           }
+          },
+          {
+           "name": "FchEmis",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "TipoDespacho",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "1",
+             "2",
+             "3"
+            ]
+           }
+          },
+          {
+           "name": "IndServicio",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 1,
+            "enum": [
+             "3",
+             "4",
+             "5",
+             "6"
+            ]
+           }
+          },
+          {
+           "name": "FmaPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "1",
+             "2",
+             "3"
+            ]
+           }
+          },
+          {
+           "name": "FmaPagExp",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 2
+           }
+          },
+          {
+           "name": "FchCancel",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "MntCancel",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "SaldoInsol",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "nonNegativeInteger",
+            "totalDigits": 18
+           }
+          },
+          {
+           "name": "MntPagos",
+           "min": 0,
+           "max": 30,
+           "children": [
+            {
+             "name": "FchPago",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "date",
+              "minInclusive": "2000-01-01",
+              "maxInclusive": "2050-12-31"
+             }
+            },
+            {
+             "name": "MntPago",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "nonNegativeInteger",
+              "totalDigits": 18
+             }
+            },
+            {
+             "name": "GlosaPagos",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 40
+             }
+            }
+           ]
+          },
+          {
+           "name": "PeriodoDesde",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "PeriodoHasta",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "MedioPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "enum": [
+             "CH",
+             "LT",
+             "EF",
+             "PE",
+             "TC",
+             "CF",
+             "OT"
+            ]
+           }
+          },
+          {
+           "name": "TpoCtaPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 5,
+            "enum": [
+             "AHORRO",
+             "CORRIENTE",
+             "VISTA"
+            ]
+           }
+          },
+          {
+           "name": "NumCtaPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "BcoPago",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 40
+           }
+          },
+          {
+           "name": "TermPagoCdg",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 4
+           }
+          },
+          {
+           "name": "TermPagoGlosa",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 100
+           }
+          },
+          {
+           "name": "TermPagoDias",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 3
+           }
+          },
+          {
+           "name": "FchVenc",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          }
+         ]
+        },
+        {
+         "name": "Emisor",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "RUTEmisor",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "RznSoc",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 100,
+            "minLength": 1
+           }
+          },
+          {
+           "name": "GiroEmis",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 80,
+            "minLength": 1
+           }
+          },
+          {
+           "name": "Telefono",
+           "min": 0,
+           "max": 2,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CorreoEmisor",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 80
+           }
+          },
+          {
+           "name": "Acteco",
+           "min": 1,
+           "max": 4,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 6
+           }
+          },
+          {
+           "name": "Sucursal",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CdgSIISucur",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 9
+           }
+          },
+          {
+           "name": "CodAdicSucur",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "DirOrigen",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 70
+           }
+          },
+          {
+           "name": "CmnaOrigen",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CiudadOrigen",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CdgVendedor",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 60
+           }
+          },
+          {
+           "name": "IdAdicEmisor",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20,
+            "minLength": 1
+           }
+          }
+         ]
+        },
+        {
+         "name": "Receptor",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "RUTRecep",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "CdgIntRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "RznSocRecep",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 100
+           }
+          },
+          {
+           "name": "Extranjero",
+           "min": 0,
+           "max": 1,
+           "children": [
+            {
+             "name": "NumId",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 20,
+              "minLength": 1
+             }
+            },
+            {
+             "name": "Nacionalidad",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 3,
+              "minLength": 1
+             }
+            },
+            {
+             "name": "IdAdicRecep",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 20,
+              "minLength": 1
+             }
+            }
+           ]
+          },
+          {
+           "name": "GiroRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 40
+           }
+          },
+          {
+           "name": "Contacto",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 80
+           }
+          },
+          {
+           "name": "CorreoRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 80
+           }
+          },
+          {
+           "name": "DirRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 70
+           }
+          },
+          {
+           "name": "CmnaRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CiudadRecep",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "DirPostal",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 70
+           }
+          },
+          {
+           "name": "CmnaPostal",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CiudadPostal",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          }
+         ]
+        },
+        {
+         "name": "Transporte",
+         "min": 0,
+         "max": 1,
+         "children": [
+          {
+           "name": "Patente",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 8
+           }
+          },
+          {
+           "name": "RUTTrans",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "Chofer",
+           "min": 0,
+           "max": 1,
+           "children": [
+            {
+             "name": "RUTChofer",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 10,
+              "minLength": 3,
+              "pattern": "[0-9]+-([0-9]|K)"
+             }
+            },
+            {
+             "name": "NombreChofer",
+             "min": 1,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 30
+             }
+            }
+           ]
+          },
+          {
+           "name": "DirDest",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 70
+           }
+          },
+          {
+           "name": "CmnaDest",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "CiudadDest",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 20
+           }
+          },
+          {
+           "name": "Aduana",
+           "min": 0,
+           "max": 1,
+           "children": [
+            {
+             "name": "CodModVenta",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 2
+             }
+            },
+            {
+             "name": "CodClauVenta",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 2
+             }
+            },
+            {
+             "name": "TotClauVenta",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "decimal",
+              "totalDigits": 18,
+              "fractionDigits": 2,
+              "minInclusive": "0.01",
+              "maxInclusive": "9999999999999999.99"
+             }
+            },
+            {
+             "name": "CodViaTransp",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 2
+             }
+            },
+            {
+             "name": "NombreTransp",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 40
+             }
+            },
+            {
+             "name": "RUTCiaTransp",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 10,
+              "minLength": 3,
+              "pattern": "[0-9]+-([0-9]|K)"
+             }
+            },
+            {
+             "name": "NomCiaTransp",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 40
+             }
+            },
+            {
+             "name": "IdAdicTransp",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 20,
+              "minLength": 1
+             }
+            },
+            {
+             "name": "Booking",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 20,
+              "minLength": 1
+             }
+            },
+            {
+             "name": "Operador",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 20,
+              "minLength": 1
+             }
+            },
+            {
+             "name": "CodPtoEmbarque",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 4
+             }
+            },
+            {
+             "name": "IdAdicPtoEmb",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 20,
+              "minLength": 1
+             }
+            },
+            {
+             "name": "CodPtoDesemb",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 4
+             }
+            },
+            {
+             "name": "IdAdicPtoDesemb",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "string",
+              "maxLength": 20,
+              "minLength": 1
+             }
+            },
+            {
+             "name": "Tara",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 7
+             }
+            },
+            {
+             "name": "CodUnidMedTara",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 2
+             }
+            },
+            {
+             "name": "PesoBruto",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "decimal",
+              "totalDigits": 10,
+              "fractionDigits": 2
+             }
+            },
+            {
+             "name": "CodUnidPesoBruto",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 2
+             }
+            },
+            {
+             "name": "PesoNeto",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "decimal",
+              "totalDigits": 10,
+              "fractionDigits": 2
+             }
+            },
+            {
+             "name": "CodUnidPesoNeto",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 2
+             }
+            },
+            {
+             "name": "TotItems",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 18
+             }
+            },
+            {
+             "name": "TotBultos",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 18
+             }
+            },
+            {
+             "name": "TipoBultos",
+             "min": 0,
+             "max": 10,
+             "children": [
+              {
+               "name": "CodTpoBultos",
+               "min": 0,
+               "max": 1,
+               "type": {
+                "base": "positiveInteger",
+                "totalDigits": 3
+               }
+              },
+              {
+               "name": "CantBultos",
+               "min": 0,
+               "max": 1,
+               "type": {
+                "base": "positiveInteger",
+                "totalDigits": 10
+               }
+              },
+              {
+               "name": "Marcas",
+               "min": 0,
+               "max": 1,
+               "type": {
+                "base": "string",
+                "maxLength": 255
+               }
+              },
+              {
+               "name": "IdContainer",
+               "min": 0,
+               "max": 1,
+               "type": {
+                "base": "string",
+                "maxLength": 25
+               }
+              },
+              {
+               "name": "Sello",
+               "min": 0,
+               "max": 1,
+               "type": {
+                "base": "string",
+                "maxLength": 20
+               }
+              },
+              {
+               "name": "EmisorSello",
+               "min": 0,
+               "max": 1,
+               "type": {
+                "base": "string",
+                "maxLength": 70
+               }
+              }
+             ]
+            },
+            {
+             "name": "MntFlete",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "decimal",
+              "totalDigits": 18,
+              "fractionDigits": 4,
+              "minInclusive": "0.0001",
+              "maxInclusive": "99999999999999.9999"
+             }
+            },
+            {
+             "name": "MntSeguro",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "decimal",
+              "totalDigits": 18,
+              "fractionDigits": 4,
+              "minInclusive": "0.0001",
+              "maxInclusive": "99999999999999.9999"
+             }
+            },
+            {
+             "name": "CodPaisRecep",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 3
+             }
+            },
+            {
+             "name": "CodPaisDestin",
+             "min": 0,
+             "max": 1,
+             "type": {
+              "base": "positiveInteger",
+              "totalDigits": 3
+             }
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "name": "Totales",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "TpoMoneda",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 15,
+            "enum": [
+             "BOLIVAR",
+             "BOLIVIANO",
+             "CHELIN",
+             "CORONA DIN",
+             "CORONA NOR",
+             "CORONA SC",
+             "CRUZEIRO REAL",
+             "DIRHAM",
+             "DOLAR AUST",
+             "DOLAR CAN",
+             "DOLAR HK",
+             "DOLAR NZ",
+             "DOLAR SIN",
+             "DOLAR TAI",
+             "DOLAR USA",
+             "DRACMA",
+             "ESCUDO",
+             "EURO",
+             "FLORIN",
+             "FRANCO BEL",
+             "FRANCO FR",
+             "FRANCO SZ",
+             "GUARANI",
+             "LIBRA EST",
+             "LIRA",
+             "MARCO AL",
+             "MARCO FIN",
+             "NUEVO SOL",
+             "OTRAS MONEDAS",
+             "PESETA",
+             "PESO",
+             "PESO CL",
+             "PESO COL",
+             "PESO MEX",
+             "PESO URUG",
+             "RAND",
+             "RENMINBI",
+             "RUPIA",
+             "SUCRE",
+             "YEN"
+            ]
+           }
+          },
+          {
+           "name": "MntExe",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "minInclusive": "0.0000",
+            "maxInclusive": "99999999999999.9999",
+            "totalDigits": 18,
+            "fractionDigits": 4
+           }
+          },
+          {
+           "name": "MntTotal",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "minInclusive": "0.0000",
+            "maxInclusive": "99999999999999.9999",
+            "totalDigits": 18,
+            "fractionDigits": 4
+           }
+          }
+         ]
+        },
+        {
+         "name": "OtraMoneda",
+         "min": 0,
+         "max": 1,
+         "children": [
+          {
+           "name": "TpoMoneda",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 15,
+            "enum": [
+             "BOLIVAR",
+             "BOLIVIANO",
+             "CHELIN",
+             "CORONA DIN",
+             "CORONA NOR",
+             "CORONA SC",
+             "CRUZEIRO REAL",
+             "DIRHAM",
+             "DOLAR AUST",
+             "DOLAR CAN",
+             "DOLAR HK",
+             "DOLAR NZ",
+             "DOLAR SIN",
+             "DOLAR TAI",
+             "DOLAR USA",
+             "DRACMA",
+             "ESCUDO",
+             "EURO",
+             "FLORIN",
+             "FRANCO BEL",
+             "FRANCO FR",
+             "FRANCO SZ",
+             "GUARANI",
+             "LIBRA EST",
+             "LIRA",
+             "MARCO AL",
+             "MARCO FIN",
+             "NUEVO SOL",
+             "OTRAS MONEDAS",
+             "PESETA",
+             "PESO",
+             "PESO CL",
+             "PESO COL",
+             "PESO MEX",
+             "PESO URUG",
+             "RAND",
+             "RENMINBI",
+             "RUPIA",
+             "SUCRE",
+             "YEN"
+            ]
+           }
+          },
+          {
+           "name": "TpoCambio",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 10,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "999999.9999"
+           }
+          },
+          {
+           "name": "MntExeOtrMnda",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0000",
+            "maxInclusive": "99999999999999.9999"
+           }
+          },
+          {
+           "name": "MntTotOtrMnda",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0000",
+            "maxInclusive": "99999999999999.9999"
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Detalle",
+       "min": 1,
+       "max": 60,
+       "children": [
+        {
+         "name": "NroLinDet",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "99"
+         }
+        },
+        {
+         "name": "CdgItem",
+         "min": 0,
+         "max": 5,
+         "children": [
+          {
+           "name": "TpoCodigo",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10
+           }
+          },
+          {
+           "name": "VlrCodigo",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 35
+           }
+          }
+         ]
+        },
+        {
+         "name": "IndExe",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "1",
+           "2",
+           "3",
+           "4",
+           "5",
+           "6"
+          ]
+         }
+        },
+        {
+         "name": "NmbItem",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 80
+         }
+        },
+        {
+         "name": "DscItem",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 1000
+         }
+        },
+        {
+         "name": "QtyRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 6,
+          "minInclusive": "0.000001",
+          "maxInclusive": "999999999999.999999"
+         }
+        },
+        {
+         "name": "UnmdRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 4
+         }
+        },
+        {
+         "name": "PrcRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 6,
+          "minInclusive": "0.000001",
+          "maxInclusive": "999999999999.999999"
+         }
+        },
+        {
+         "name": "QtyItem",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 6,
+          "minInclusive": "0.000001",
+          "maxInclusive": "999999999999.999999"
+         }
+        },
+        {
+         "name": "Subcantidad",
+         "min": 0,
+         "max": 5,
+         "children": [
+          {
+           "name": "SubQty",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 6,
+            "minInclusive": "0.000001",
+            "maxInclusive": "999999999999.999999"
+           }
+          },
+          {
+           "name": "SubCod",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 35
+           }
+          },
+          {
+           "name": "TipCodSubQty",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 1
+           }
+          }
+         ]
+        },
+        {
+         "name": "FchElabor",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "date",
+          "minInclusive": "2000-01-01",
+          "maxInclusive": "2050-12-31"
+         }
+        },
+        {
+         "name": "FchVencim",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "date",
+          "minInclusive": "2000-01-01",
+          "maxInclusive": "2050-12-31"
+         }
+        },
+        {
+         "name": "UnmdItem",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 4
+         }
+        },
+        {
+         "name": "PrcItem",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 6,
+          "minInclusive": "0.000001",
+          "maxInclusive": "999999999999.999999"
+         }
+        },
+        {
+         "name": "OtrMnda",
+         "min": 0,
+         "max": 1,
+         "children": [
+          {
+           "name": "PrcOtrMon",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "99999999999999.9999"
+           }
+          },
+          {
+           "name": "Moneda",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 3
+           }
+          },
+          {
+           "name": "FctConv",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 10,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "999999.9999"
+           }
+          },
+          {
+           "name": "DctoOtrMnda",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "99999999999999.9999"
+           }
+          },
+          {
+           "name": "RecargoOtrMnda",
+           "min": 0,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "99999999999999.9999"
+           }
+          },
+          {
+           "name": "MontoItemOtrMnda",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 4,
+            "minInclusive": "0.0001",
+            "maxInclusive": "99999999999999.9999"
+           }
+          }
+         ]
+        },
+        {
+         "name": "DescuentoPct",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 5,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "999.99"
+         }
+        },
+        {
+         "name": "DescuentoMonto",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "SubDscto",
+         "min": 0,
+         "max": 5,
+         "children": [
+          {
+           "name": "TipoDscto",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "enum": [
+             "$",
+             "%"
+            ]
+           }
+          },
+          {
+           "name": "ValorDscto",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 2,
+            "minInclusive": "0.01",
+            "maxInclusive": "9999999999999999.99"
+           }
+          }
+         ]
+        },
+        {
+         "name": "RecargoPct",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 5,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "999.99"
+         }
+        },
+        {
+         "name": "RecargoMonto",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 18
+         }
+        },
+        {
+         "name": "SubRecargo",
+         "min": 0,
+         "max": 5,
+         "children": [
+          {
+           "name": "TipoRecargo",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "enum": [
+             "$",
+             "%"
+            ]
+           }
+          },
+          {
+           "name": "ValorRecargo",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "totalDigits": 18,
+            "fractionDigits": 2,
+            "minInclusive": "0.01",
+            "maxInclusive": "9999999999999999.99"
+           }
+          }
+         ]
+        },
+        {
+         "name": "MontoItem",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "minInclusive": "0.0000",
+          "maxInclusive": "99999999999999.9999",
+          "totalDigits": 18,
+          "fractionDigits": 4
+         }
+        }
+       ]
+      },
+      {
+       "name": "SubTotInfo",
+       "min": 0,
+       "max": 20,
+       "children": [
+        {
+         "name": "NroSTI",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "99"
+         }
+        },
+        {
+         "name": "GlosaSTI",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 40
+         }
+        },
+        {
+         "name": "OrdenSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "99"
+         }
+        },
+        {
+         "name": "SubTotNetoSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "SubTotIVASTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "SubTotAdicSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "SubTotExeSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "ValSubtotSTI",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "LineasDeta",
+         "min": 0,
+         "max": 60,
+         "type": {
+          "base": "positiveInteger"
+         }
+        }
+       ]
+      },
+      {
+       "name": "DscRcgGlobal",
+       "min": 0,
+       "max": 20,
+       "children": [
+        {
+         "name": "NroLinDR",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger"
+         }
+        },
+        {
+         "name": "TpoMov",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "enum": [
+           "D",
+           "R"
+          ]
+         }
+        },
+        {
+         "name": "GlosaDR",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 45
+         }
+        },
+        {
+         "name": "TpoValor",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "enum": [
+           "%",
+           "$"
+          ]
+         }
+        },
+        {
+         "name": "ValorDR",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 2,
+          "minInclusive": "0.01",
+          "maxInclusive": "9999999999999999.99"
+         }
+        },
+        {
+         "name": "ValorDROtrMnda",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "decimal",
+          "totalDigits": 18,
+          "fractionDigits": 4,
+          "minInclusive": "0.0001",
+          "maxInclusive": "99999999999999.9999"
+         }
+        },
+        {
+         "name": "IndExeDR",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "1",
+           "2"
+          ]
+         }
+        }
+       ]
+      },
+      {
+       "name": "Referencia",
+       "min": 0,
+       "max": 40,
+       "children": [
+        {
+         "name": "NroLinRef",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "maxInclusive": "99"
+         }
+        },
+        {
+         "name": "TpoDocRef",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 3,
+          "minLength": 1
+         }
+        },
+        {
+         "name": "IndGlobal",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 1,
+          "enum": [
+           "1"
+          ]
+         }
+        },
+        {
+         "name": "FolioRef",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 18,
+          "minLength": 1
+         }
+        },
+        {
+         "name": "RUTOtr",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 10,
+          "minLength": 3,
+          "pattern": "[0-9]+-([0-9]|K)"
+         }
+        },
+        {
+         "name": "IdAdicOtr",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 20,
+          "minLength": 1
+         }
+        },
+        {
+         "name": "FchRef",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "date",
+          "minInclusive": "1950-01-01",
+          "maxInclusive": "2050-12-31"
+         }
+        },
+        {
+         "name": "CodRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "enum": [
+           "1",
+           "2",
+           "3"
+          ]
+         }
+        },
+        {
+         "name": "RazonRef",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "string",
+          "maxLength": 90
+         }
+        }
+       ]
+      },
+      {
+       "name": "TED",
+       "min": 1,
+       "max": 1,
+       "children": [
+        {
+         "name": "DD",
+         "min": 1,
+         "max": 1,
+         "children": [
+          {
+           "name": "RE",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "TD",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "enum": [
+             "110",
+             "111",
+             "112"
+            ]
+           }
+          },
+          {
+           "name": "F",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "positiveInteger",
+            "totalDigits": 10
+           }
+          },
+          {
+           "name": "FE",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "date",
+            "minInclusive": "2000-01-01",
+            "maxInclusive": "2050-12-31"
+           }
+          },
+          {
+           "name": "RR",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "maxLength": 10,
+            "minLength": 3,
+            "pattern": "[0-9]+-([0-9]|K)"
+           }
+          },
+          {
+           "name": "RSR",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "minLength": 1,
+            "maxLength": 40
+           }
+          },
+          {
+           "name": "MNT",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "decimal",
+            "minInclusive": "0.0000",
+            "maxInclusive": "99999999999999.9999",
+            "totalDigits": 18,
+            "fractionDigits": 4
+           }
+          },
+          {
+           "name": "IT1",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "string",
+            "minLength": 1,
+            "maxLength": 40
+           }
+          },
+          {
+           "name": "CAF",
+           "min": 1,
+           "max": 1,
+           "children": [
+            {
+             "name": "DA",
+             "min": 1,
+             "max": 1,
+             "children": [
+              {
+               "name": "RE",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "string",
+                "maxLength": 10,
+                "minLength": 3,
+                "pattern": "[0-9]+-([0-9]|K)"
+               }
+              },
+              {
+               "name": "RS",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "string",
+                "minLength": 1,
+                "maxLength": 40
+               }
+              },
+              {
+               "name": "TD",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "positiveInteger",
+                "enum": [
+                 "110",
+                 "111",
+                 "112"
+                ]
+               }
+              },
+              {
+               "name": "RNG",
+               "min": 1,
+               "max": 1,
+               "children": [
+                {
+                 "name": "D",
+                 "min": 1,
+                 "max": 1,
+                 "type": {
+                  "base": "positiveInteger",
+                  "totalDigits": 10
+                 }
+                },
+                {
+                 "name": "H",
+                 "min": 1,
+                 "max": 1,
+                 "type": {
+                  "base": "positiveInteger",
+                  "totalDigits": 10
+                 }
+                }
+               ]
+              },
+              {
+               "name": "FA",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "date",
+                "minInclusive": "2000-01-01",
+                "maxInclusive": "2050-12-31"
+               }
+              },
+              {
+               "choice": [
+                {
+                 "name": "RSAPK",
+                 "min": 1,
+                 "max": 1,
+                 "children": [
+                  {
+                   "name": "M",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  },
+                  {
+                   "name": "E",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  }
+                 ]
+                },
+                {
+                 "name": "DSAPK",
+                 "min": 1,
+                 "max": 1,
+                 "children": [
+                  {
+                   "name": "P",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  },
+                  {
+                   "name": "Q",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  },
+                  {
+                   "name": "G",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  },
+                  {
+                   "name": "Y",
+                   "min": 1,
+                   "max": 1,
+                   "type": {
+                    "base": "base64Binary"
+                   }
+                  }
+                 ]
+                }
+               ],
+               "min": 1,
+               "max": 1
+              },
+              {
+               "name": "IDK",
+               "min": 1,
+               "max": 1,
+               "type": {
+                "base": "long"
+               }
+              }
+             ]
+            },
+            {
+             "name": "FRMA",
+             "min": 1,
+             "max": 1
+            }
+           ],
+           "attributes": [
+            {
+             "name": "version",
+             "required": true,
+             "type": null,
+             "fixed": "1.0"
+            }
+           ]
+          },
+          {
+           "name": "TSTED",
+           "min": 1,
+           "max": 1,
+           "type": {
+            "base": "dateTime",
+            "minInclusive": "2000-01-01T00:00:00",
+            "maxInclusive": "2050-12-31T23:59:59"
+           }
+          }
+         ]
+        },
+        {
+         "name": "FRMT",
+         "min": 1,
+         "max": 1
+        }
+       ],
+       "attributes": [
+        {
+         "name": "version",
+         "required": true,
+         "type": null,
+         "fixed": "1.0"
+        }
+       ]
+      },
+      {
+       "name": "TmstFirma",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "dateTime",
+        "minInclusive": "2000-01-01T00:00:00",
+        "maxInclusive": "2050-12-31T23:59:59"
+       }
+      }
+     ],
+     "attributes": [
+      {
+       "name": "ID",
+       "required": true,
+       "type": {
+        "base": "ID"
+       },
+       "fixed": null
+      }
+     ]
+    }
+   ],
+   "min": 1,
+   "max": 1
+  },
+  {
+   "name": "Signature",
+   "min": 1,
+   "max": 1,
+   "ref": "ds:Signature"
+  }
+ ],
+ "attributes": [
+  {
+   "name": "version",
+   "required": true,
+   "type": {
+    "base": "decimal"
+   },
+   "fixed": "1.0"
+  }
+ ],
+ "schema": "dte/DTE_v10.xsd",
+ "namespace": "http://www.sii.cl/SiiDte"
+}

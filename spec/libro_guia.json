@@ -1,0 +1,533 @@
+{
+ "name": "LibroGuia",
+ "min": 1,
+ "max": 1,
+ "children": [
+  {
+   "name": "EnvioLibro",
+   "min": 1,
+   "max": 1,
+   "children": [
+    {
+     "name": "Caratula",
+     "min": 1,
+     "max": 1,
+     "children": [
+      {
+       "name": "RutEmisorLibro",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "RutEnvia",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "PeriodoTributario",
+       "min": 1,
+       "max": 1
+      },
+      {
+       "name": "FchResol",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "date"
+       }
+      },
+      {
+       "name": "NroResol",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger"
+       }
+      },
+      {
+       "name": "TipoLibro",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "enum": [
+         "ESPECIAL"
+        ]
+       }
+      },
+      {
+       "name": "TipoEnvio",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "enum": [
+         "PARCIAL",
+         "FINAL",
+         "TOTAL",
+         "AJUSTE"
+        ]
+       }
+      },
+      {
+       "name": "NroSegmento",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 6
+       }
+      },
+      {
+       "name": "FolioNotificacion",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 18
+       }
+      }
+     ]
+    },
+    {
+     "name": "ResumenSegmento",
+     "min": 0,
+     "max": 1,
+     "children": [
+      {
+       "name": "TotFolAnulado",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 10
+       }
+      },
+      {
+       "name": "TotGuiaAnulada",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 10
+       }
+      },
+      {
+       "name": "TotGuiaVenta",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 10
+       }
+      },
+      {
+       "name": "TotMntGuiaVta",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "TotMntModificado",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "integer",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "TotTraslado",
+       "min": 0,
+       "max": 6,
+       "children": [
+        {
+         "name": "TpoTraslado",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 1,
+          "enum": [
+           "2",
+           "3",
+           "4",
+           "5",
+           "6",
+           "7",
+           "8",
+           "9"
+          ]
+         }
+        },
+        {
+         "name": "CantGuia",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "MntGuia",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "integer",
+          "totalDigits": 18
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "ResumenPeriodo",
+     "min": 0,
+     "max": 1,
+     "children": [
+      {
+       "name": "TotFolAnulado",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 10
+       }
+      },
+      {
+       "name": "TotGuiaAnulada",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 10
+       }
+      },
+      {
+       "name": "TotGuiaVenta",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 10
+       }
+      },
+      {
+       "name": "TotMntGuiaVta",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "TotMntModificado",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "TotTraslado",
+       "min": 0,
+       "max": 6,
+       "children": [
+        {
+         "name": "TpoTraslado",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "positiveInteger",
+          "totalDigits": 1,
+          "enum": [
+           "2",
+           "3",
+           "4",
+           "5",
+           "6",
+           "7",
+           "8",
+           "9"
+          ]
+         }
+        },
+        {
+         "name": "CantGuia",
+         "min": 1,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 10
+         }
+        },
+        {
+         "name": "MntGuia",
+         "min": 0,
+         "max": 1,
+         "type": {
+          "base": "nonNegativeInteger",
+          "totalDigits": 18
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Detalle",
+     "min": 0,
+     "max": null,
+     "children": [
+      {
+       "name": "Folio",
+       "min": 1,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 10
+       }
+      },
+      {
+       "name": "Anulado",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 1,
+        "enum": [
+         "1",
+         "2",
+         "3"
+        ]
+       }
+      },
+      {
+       "name": "Operacion",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 1,
+        "enum": [
+         "1",
+         "2"
+        ]
+       }
+      },
+      {
+       "name": "TpoOper",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 1,
+        "enum": [
+         "1",
+         "2",
+         "3",
+         "4",
+         "5",
+         "6",
+         "7"
+        ]
+       }
+      },
+      {
+       "name": "FchDoc",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "date"
+       }
+      },
+      {
+       "name": "RUTDoc",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 10,
+        "pattern": "[0-9]+-([0-9]|K)"
+       }
+      },
+      {
+       "name": "RznSoc",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "string",
+        "maxLength": 50
+       }
+      },
+      {
+       "name": "MntNeto",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "TasaImp",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "decimal",
+        "totalDigits": 5,
+        "fractionDigits": 2,
+        "minInclusive": "0",
+        "maxInclusive": "100"
+       }
+      },
+      {
+       "name": "IVA",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "MntTotal",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "MntModificado",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "nonNegativeInteger",
+        "totalDigits": 18
+       }
+      },
+      {
+       "name": "TpoDocRef",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "enum": [
+         "30",
+         "32",
+         "33",
+         "34",
+         "35",
+         "38",
+         "39",
+         "40",
+         "45",
+         "46",
+         "55",
+         "56",
+         "60",
+         "61",
+         "101",
+         "102",
+         "103",
+         "104",
+         "105",
+         "106",
+         "108",
+         "109",
+         "900",
+         "901",
+         "902",
+         "903",
+         "904",
+         "905",
+         "906",
+         "907",
+         "909",
+         "910",
+         "911",
+         "914",
+         "918",
+         "919"
+        ]
+       }
+      },
+      {
+       "name": "FolioDocRef",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "positiveInteger",
+        "totalDigits": 10
+       }
+      },
+      {
+       "name": "FchDocRef",
+       "min": 0,
+       "max": 1,
+       "type": {
+        "base": "date"
+       }
+      }
+     ]
+    },
+    {
+     "name": "TmstFirma",
+     "min": 1,
+     "max": 1,
+     "type": {
+      "base": "dateTime"
+     }
+    }
+   ],
+   "attributes": [
+    {
+     "name": "ID",
+     "required": true,
+     "type": {
+      "base": "ID"
+     },
+     "fixed": null
+    }
+   ]
+  },
+  {
+   "name": "Signature",
+   "min": 1,
+   "max": 1,
+   "ref": "ds:Signature"
+  }
+ ],
+ "attributes": [
+  {
+   "name": "version",
+   "required": true,
+   "type": {
+    "base": "decimal"
+   },
+   "fixed": "1.0"
+  }
+ ],
+ "schema": "lgd/LibroGuia_v10.xsd",
+ "namespace": "http://www.sii.cl/SiiDte"
+}
