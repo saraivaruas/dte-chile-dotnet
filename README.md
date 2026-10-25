@@ -8,7 +8,7 @@ paquetes de terceros.
 
 > ## Alcance real — léalo antes de usarla
 >
-> - **Los documento cumplem el esquema y las firmas pero no garantiza que el SII lo acepte. Cada usuario debe ingresar los certificados correspondientes autorizado para poder emitir.** La biblioteca arma el XML según los esquemas oficiales (XSD) y el
+> - **Los documentos cumplem el esquema y las firmas pero no garantiza que el SII lo acepte. Cada usuario debe ingresar los certificados correspondientes autorizado para poder emitir.** La biblioteca arma el XML según los esquemas oficiales (XSD) y el
 >   formato publicado por el SII, y lo verifica con pruebas automáticas. La aceptación final depende del SII: su ambiente de certificación, el estado de su
 >   empresa como emisora, sus folios (CAF) reales y las validaciones que el SII aplique en cada momento (ver [Resolución Exenta 121](#resolución-exenta-sii-n-121)).
 > - **No ha sido probada contra el SII con documentos reales de producción.** Las pruebas automáticas usan un certificado y un CAF **Auto** generados.
