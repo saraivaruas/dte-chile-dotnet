@@ -11,7 +11,7 @@ paquetes de terceros.
 > - **Que un documento cumpla el esquema y las firmas no garantiza que el SII lo acepte.** La biblioteca arma el XML según los esquemas oficiales (XSD) y el
 >   formato publicado por el SII, y lo verifica con pruebas automáticas. La aceptación final depende del SII: su ambiente de certificación, el estado de su
 >   empresa como emisora, sus folios (CAF) reales y las validaciones que el SII aplique en cada momento (ver [Resolución Exenta 121](#resolución-exenta-sii-n-121)).
-> - **No ha sido probada contra el SII con documentos reales de producción.** Las pruebas automáticas usan un certificado y un CAF **falsos** generados al vuelo.
+> - **No ha sido probada contra el SII con documentos reales de producción.** Las pruebas automáticas usan un certificado y un CAF **Auto** generados.
 >   Antes de emitir de verdad debe pasar el proceso de certificación del SII con su propio certificado y sus propios folios.
 > - **No es asesoría tributaria ni contable.** Los cálculos (IVA 19 %, impuestos adicionales, retenciones) siguen las reglas publicadas, pero las tasas de
 >   impuestos adicionales y retenciones las debe indicar quien usa la biblioteca, porque cambian por ley.
