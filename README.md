@@ -138,7 +138,7 @@ montos) y se actualizará a medida que el SII publique las fases. Si el SII publ
 ## Instalación
 
 - PHP: `composer require saraivaruas/dte-chile` (cuando se publique en Packagist) o copiar `php/src` y `php/resources`.
-- C#: paquete NuGet `DteChile` (cuando se publique) o referenciar `dotnet/src/DteChile`.
+- C#: `dotnet add package DteChile` ([nuget.org/packages/DteChile](https://www.nuget.org/packages/DteChile)) o referenciar `dotnet/src/DteChile`.
 
 ## Estado de la certificación con el SII
 
