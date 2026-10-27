@@ -158,4 +158,94 @@ public class FacturadorTests
         Assert.Contains("Servicio caído", r.Errores["boletas"]);
         Assert.DoesNotContain("SECRETO", string.Join(' ', r.Errores.Values));
     }
+
+    private const string Hdr = "<SII:RESPUESTA xmlns:SII=\"http://www.sii.cl/XMLSchema\"><SII:RESP_HDR>{0}</SII:RESP_HDR>{1}</SII:RESPUESTA>";
+
+    private static IEnumerable<string> Auth() =>
+    [
+        Soap("getSeed", string.Format(Hdr, "<ESTADO>00</ESTADO>", "<SII:RESP_BODY><SEMILLA>1</SEMILLA></SII:RESP_BODY>")),
+        Soap("getToken", string.Format(Hdr, "<ESTADO>00</ESTADO>", "<SII:RESP_BODY><TOKEN>TKN</TOKEN></SII:RESP_BODY>")),
+    ];
+
+    private const string Ok = "<RECEPCIONDTE><STATUS>0</STATUS><TRACKID>777</TRACKID></RECEPCIONDTE>";
+
+    private static SiiClient SiiFalso(params (int Status, string Body)[] respuestas)
+    {
+        var cola = new Queue<(int, string)>(respuestas);
+
+        return new SiiClient(SiiAmbiente.Certificacion, null, (_, _) =>
+        {
+            var (st, body) = cola.Count > 0 ? cola.Dequeue() : (500, "sin respuesta");
+
+            return Task.FromResult(new SiiResponse(st, body));
+        });
+    }
+
+    private static (int, string)[] Con(IEnumerable<string> auth, params (int, string)[] resto) => [.. auth.Select(a => (200, a)), .. resto];
+
+    private static readonly Linea[] Servicio = [new Linea("Servicio", 1, 1000)];
+
+    [Fact]
+    public async Task EmitirYEnviar_emite_y_envia_en_una_llamada_y_deja_el_seguimiento()
+    {
+        var (f, _) = Crear([33], SiiFalso(Con(Auth(), (200, Ok))));
+        var r = await f.EmitirYEnviarAsync(33, Cliente(), Servicio, null, Fecha);
+        Assert.Equal(EstadoDocumento.Enviado, r.Estado);
+        Assert.Equal("777", r.TrackId);
+        Assert.Equal(1, r.Documento.Folio);
+        Assert.Equal(1, r.Intentos);
+        Assert.True(r.Exitoso);
+    }
+
+    [Fact]
+    public async Task EmitirYEnviar_reintenta_ante_un_fallo_temporal_y_lo_logra()
+    {
+        var (f, _) = Crear([33], SiiFalso(Con(Auth(), (503, "caído"), (200, Ok))));
+        var r = await f.Reintentos(2, 0).EmitirYEnviarAsync(33, Cliente(), Servicio, null, Fecha);
+        Assert.Equal(EstadoDocumento.Enviado, r.Estado);
+        Assert.Equal(2, r.Intentos);
+    }
+
+    [Fact]
+    public async Task EmitirYEnviar_si_el_SII_no_responde_queda_Emitido_y_se_puede_reenviar()
+    {
+        var (f, _) = Crear([33], SiiFalso(Con(Auth(), (503, "x"), (503, "x"), (503, "x"), (200, Ok))));
+        var r = await f.Reintentos(2, 0).EmitirYEnviarAsync(33, Cliente(), Servicio, null, Fecha);
+        Assert.Equal(EstadoDocumento.Emitido, r.Estado);
+        Assert.False(r.Exitoso);
+        Assert.Contains("reenvíelo", r.Mensaje);
+        var r2 = await f.ReenviarAsync(r.Documento);
+        Assert.Equal(EstadoDocumento.Enviado, r2.Estado);
+        Assert.Equal(r.Documento.Folio, r2.Documento.Folio);
+    }
+
+    [Fact]
+    public async Task EmitirYEnviar_un_rechazo_del_SII_no_se_reintenta_y_se_explica_en_lenguaje_de_usuario()
+    {
+        var (f, _) = Crear([33], SiiFalso(Con(Auth(), (200, "<RECEPCIONDTE><STATUS>7</STATUS></RECEPCIONDTE>"))));
+        var r = await f.Reintentos(3, 0).EmitirYEnviarAsync(33, Cliente(), Servicio, null, Fecha);
+        Assert.Equal(EstadoDocumento.Rechazado, r.Estado);
+        Assert.Equal(1, r.Intentos);
+        Assert.Contains("esquema", r.Mensaje);
+        Assert.Contains("STATUS=7", r.DetalleTecnico);
+    }
+
+    [Fact]
+    public async Task Consultar_interpreta_el_estado_del_SII()
+    {
+        static (int, string) Est(string e, int a, int r, int p) => (200, Soap("getEstUp", string.Format(Hdr,
+            $"<TRACKID>777</TRACKID><ESTADO>{e}</ESTADO><GLOSA>x</GLOSA>", $"<SII:RESP_BODY><ACEPTADOS>{a}</ACEPTADOS><RECHAZADOS>{r}</RECHAZADOS><REPAROS>{p}</REPAROS></SII:RESP_BODY>")));
+        var (f, _) = Crear([33], SiiFalso(Con(Auth(), (200, Ok), Est("EPR", 1, 0, 0), Est("EPR", 0, 0, 1), Est("EPR", 0, 1, 0), Est("REC", 0, 0, 0), Est("RFR", 0, 0, 0))));
+        var r = await f.EmitirYEnviarAsync(33, Cliente(), Servicio, null, Fecha);
+        Assert.Equal(EstadoDocumento.Aceptado, (await f.ConsultarAsync(r)).Estado);
+        Assert.Equal(EstadoDocumento.ConReparos, (await f.ConsultarAsync(r)).Estado);
+        Assert.Equal(EstadoDocumento.Rechazado, (await f.ConsultarAsync(r)).Estado);
+        var enProceso = await f.ConsultarAsync(r);
+        Assert.Equal(EstadoDocumento.Enviado, enProceso.Estado);
+        Assert.False(enProceso.Estado.EsFinal());
+        var firma = await f.ConsultarAsync(r);
+        Assert.Equal(EstadoDocumento.Rechazado, firma.Estado);
+        Assert.Contains("firma", firma.Mensaje);
+    }
+
 }

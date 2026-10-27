@@ -1,5 +1,11 @@
 # Cambios
 
+## 0.2.0 — 2026-10
+- `emitirYEnviar()` / `EmitirYEnviarAsync()`: emite y envía en una llamada, con reintentos ante fallos temporales (red, SII caído) y estado ya interpretado (`EstadoDocumento`: emitido, enviado, aceptado, con reparos, rechazado).
+- `reenviar()` para documentos que quedaron emitidos sin llegar al SII (el folio no se vuelve a usar) y `consultar()` para actualizar el estado.
+- Errores del SII traducidos a una explicación y una acción concreta (`MensajesSii`), conservando el detalle técnico.
+- `probarConexion()`: autenticación en facturas y boletas sin CAF ni envío.
+
 ## 0.1.0 — 2026-10
 Primera versión pública.
 - Autenticación con el SII (certificación) comprobada con un certificado real, facturas y boletas; ejemplos `probar_conexion.php` y `verificar_certificado.php`.

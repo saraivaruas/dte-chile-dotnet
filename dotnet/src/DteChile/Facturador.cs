@@ -26,6 +26,8 @@ public sealed class Facturador
     private readonly Dictionary<int, Caf> _cafs = [];
     private string? _tokenDte;
     private string? _tokenBoleta;
+    private int _reintentos = 2;
+    private int _esperaMs = 500;
 
     /// <param name="fechaResolucion">Fecha (AAAA-MM-DD) de la resolución del SII que autoriza al emisor.</param>
     /// <param name="numeroResolucion">Número de esa resolución (0 si la autorización fue por internet).</param>
@@ -168,6 +170,123 @@ public sealed class Facturador
         return new DocumentoEmitido(
             tipo, folio, monto, Convert.ToString(datos["fechaEmision"], CultureInfo.InvariantCulture)!, Rut.ToDteFormat(_emisor.Rut),
             receptor is not null ? Rut.ToDteFormat(receptor.Rut) : BoletaBuilder.RutGenerico, firmado, Pdf417Encoder.TedToLatin1(ted));
+    }
+
+    /// <summary>Cuántas veces reintentar un envío ante fallos temporales (red, SII caído) y cuánto esperar entre intentos (se duplica cada vez).</summary>
+    public Facturador Reintentos(int veces, int esperaMs = 500)
+    {
+        _reintentos = Math.Max(0, veces);
+        _esperaMs = Math.Max(0, esperaMs);
+
+        return this;
+    }
+
+    /// <summary>
+    /// Emite (construye, timbra y firma) y envía al SII en una sola llamada. No lanza por un fallo del SII o de la red: el resultado trae el estado y qué hacer.
+    /// Si el envío no llegó, el documento queda emitido (el folio ya se usó) y se reenvía con <see cref="ReenviarAsync"/>.
+    /// </summary>
+    public async Task<ResultadoEmision> EmitirYEnviarAsync(int tipo, Receptor? receptor, IReadOnlyList<Linea> lineas, IReadOnlyList<Referencia>? referencias = null,
+        IDictionary<string, object?>? opciones = null, CancellationToken ct = default)
+        => await ReenviarAsync(Emitir(tipo, receptor, lineas, referencias, opciones), ct);
+
+    /// <summary>Envía un documento ya emitido (por ejemplo, uno que quedó en estado Emitido por una caída del SII), con reintentos ante fallos temporales.</summary>
+    public async Task<ResultadoEmision> ReenviarAsync(DocumentoEmitido documento, CancellationToken ct = default)
+    {
+        var intentos = 0;
+        var espera = _esperaMs;
+        var renovoToken = false;
+        while (true)
+        {
+            intentos++;
+            try
+            {
+                var envio = await EnviarAsync([documento], ct);
+
+                return new ResultadoEmision(documento, EstadoDocumento.Enviado, envio.TrackId, string.Empty, intentos);
+            }
+            catch (Exception e) when (e is not OperationCanceledException || !ct.IsCancellationRequested)
+            {
+                var original = e.Message;
+                if (original.Contains("STATUS=5", StringComparison.Ordinal) && !renovoToken)
+                {
+                    renovoToken = true; // sesión vencida: renovar una vez
+                    _tokenDte = _tokenBoleta = null;
+                    continue;
+                }
+
+                var temporal = MensajesSii.EsTemporal(original);
+                if (temporal && intentos <= _reintentos)
+                {
+                    await Task.Delay(espera, ct);
+                    espera *= 2;
+                    continue;
+                }
+
+                return new ResultadoEmision(documento, temporal ? EstadoDocumento.Emitido : EstadoDocumento.Rechazado, null, MensajesSii.Explicar(original), intentos, original);
+            }
+        }
+    }
+
+    /// <summary>Consulta al SII y devuelve el resultado actualizado (aceptado, con reparos, rechazado o aún en proceso).</summary>
+    public async Task<ResultadoEmision> ConsultarAsync(ResultadoEmision resultado, CancellationToken ct = default)
+    {
+        if (resultado.TrackId is null)
+        {
+            return resultado;
+        }
+
+        string estado;
+        int aceptados, rechazados, reparos;
+        try
+        {
+            if (resultado.Documento.EsBoleta)
+            {
+                var j = await EstadoEnvioBoletaAsync(resultado.TrackId, ct);
+                estado = j.TryGetProperty("estado", out var e) ? e.GetString() ?? string.Empty : string.Empty;
+                aceptados = rechazados = reparos = 0;
+                if (j.TryGetProperty("estadistica", out var est) && est.ValueKind == System.Text.Json.JsonValueKind.Array && est.GetArrayLength() > 0)
+                {
+                    var x = est[0];
+                    aceptados = x.TryGetProperty("aceptados", out var a) ? a.GetInt32() : 0;
+                    rechazados = x.TryGetProperty("rechazados", out var r) ? r.GetInt32() : 0;
+                    reparos = x.TryGetProperty("reparos", out var p) ? p.GetInt32() : 0;
+                }
+            }
+            else
+            {
+                var r = await EstadoEnvioAsync(resultado.TrackId, ct);
+                estado = r.Estado;
+                aceptados = r.Aceptados ?? 0;
+                rechazados = r.Rechazados ?? 0;
+                reparos = r.Reparos ?? 0;
+            }
+        }
+        catch (Exception e) when (e is not OperationCanceledException)
+        {
+            return resultado.ConEstado(resultado.Estado, MensajesSii.Explicar(e.Message), e.Message);
+        }
+
+        if (estado is "RSC" or "RFR" or "RCT" or "RCH")
+        {
+            return resultado.ConEstado(EstadoDocumento.Rechazado, MensajesSii.Explicar(estado), estado);
+        }
+
+        if (estado == "EPR" && rechazados > 0)
+        {
+            return resultado.ConEstado(EstadoDocumento.Rechazado, $"El SII procesó el envío y rechazó el documento. Revise el detalle en el sitio del SII con el seguimiento {resultado.TrackId}.", estado);
+        }
+
+        if (estado == "EPR" && reparos > 0)
+        {
+            return resultado.ConEstado(EstadoDocumento.ConReparos, "El SII aceptó el documento con reparos (observaciones que no lo invalidan).", estado);
+        }
+
+        if (estado == "EPR" && aceptados > 0)
+        {
+            return resultado.ConEstado(EstadoDocumento.Aceptado, string.Empty, estado);
+        }
+
+        return resultado.ConEstado(EstadoDocumento.Enviado, "El SII aún está procesando el envío. Consulte de nuevo en unos minutos.", estado);
     }
 
     /// <summary>Arma el sobre firmado y lo sube al SII. Todos los documentos deben ser boletas, o ninguno.</summary>
