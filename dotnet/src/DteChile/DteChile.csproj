@@ -6,7 +6,7 @@
     <RootNamespace>DteChile</RootNamespace>
     <AssemblyName>DteChile</AssemblyName>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <Version>0.3.0</Version>
+    <Version>0.3.1</Version>
     <Authors>Jorge Luis Saraiva Ruas</Authors>
     <Copyright>Copyright (c) 2026 Jorge Luis Saraiva Ruas</Copyright>
     <Description>Biblioteca .NET sin dependencias para generar, timbrar, firmar y enviar Documentos Tributarios Electrónicos (DTE) al SII de Chile. Software libre MIT.</Description>

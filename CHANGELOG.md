@@ -1,5 +1,9 @@
 # Cambios
 
+## 0.3.1 — 2026-10
+- README: la representación impresa en PDF figura entre lo que sí hace, no entre lo que no hace.
+- Publicación también en GitHub Packages.
+
 ## 0.3.0 — 2026-10
 - **Representación impresa en PDF** (`Facturador::pdf()` / `Facturador.Pdf()` y `RepresentacionImpresa`): tamaño Carta, recuadro rojo con RUT, tipo y folio, unidad del SII, emisor, receptor, referencias, detalle (varias páginas), totales y timbre PDF417 con la leyenda «Timbre Electrónico SII … Verifique documento: www.sii.cl». Sirve para facturas, notas, guías y boletas; opción `cedible`. Escritor de PDF propio, sin dependencias.
 - Las pruebas decodifican el PDF417 dibujado en el PDF y lo comparan byte a byte con el timbre del documento.
