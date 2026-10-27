@@ -122,6 +122,13 @@ public sealed record DocumentoEmitido(int Tipo, int Folio, long MontoTotal, stri
 /// <summary>Resultado de subir un envío al SII. El <paramref name="TrackId"/> sirve para consultar el estado después.</summary>
 public sealed record ResultadoEnvio(string TrackId, int Documentos);
 
+/// <summary>Resultado de <see cref="Facturador.ProbarConexionAsync"/>: si el SII aceptó la firma del certificado en cada servicio. Nunca incluye tokens ni claves.</summary>
+/// <param name="Errores">Servicio → motivo, solo de los que fallaron.</param>
+public sealed record ResultadoConexion(string Ambiente, bool Facturas, bool Boletas, string RutTitular, DateTimeOffset CertificadoVence, IReadOnlyDictionary<string, string> Errores)
+{
+    public bool Ok => Facturas && Boletas;
+}
+
 /// <summary>Entrega el siguiente folio libre de un tipo de documento. Cada folio debe usarse una sola vez.</summary>
 public interface IFolioStore
 {

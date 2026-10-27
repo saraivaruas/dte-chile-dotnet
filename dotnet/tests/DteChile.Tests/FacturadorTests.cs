@@ -140,4 +140,22 @@ public class FacturadorTests
     private static string Soap(string nombre, string interior)
         => $"<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><{nombre} xmlns=\"http://DefaultNamespace\"><{nombre}Return>"
            + System.Security.SecurityElement.Escape(interior) + $"</{nombre}Return></{nombre}></soapenv:Body></soapenv:Envelope>";
+
+    [Fact]
+    public async Task ProbarConexion_informa_por_servicio_sin_lanzar_y_sin_exponer_tokens()
+    {
+        var cola = new Queue<string>([
+            Soap("getSeed", "<SII:RESPUESTA xmlns:SII=\"http://www.sii.cl/XMLSchema\"><SII:RESP_HDR><ESTADO>00</ESTADO></SII:RESP_HDR><SII:RESP_BODY><SEMILLA>1</SEMILLA></SII:RESP_BODY></SII:RESPUESTA>"),
+            Soap("getToken", "<SII:RESPUESTA xmlns:SII=\"http://www.sii.cl/XMLSchema\"><SII:RESP_HDR><ESTADO>00</ESTADO></SII:RESP_HDR><SII:RESP_BODY><TOKEN>SECRETO</TOKEN></SII:RESP_BODY></SII:RESPUESTA>"),
+            "<SII:RESPUESTA xmlns:SII=\"http://www.sii.cl/XMLSchema\"><SII:RESP_HDR><ESTADO>-3</ESTADO><GLOSA>Servicio caído</GLOSA></SII:RESP_HDR></SII:RESPUESTA>"]);
+        var sii = new SiiClient(SiiAmbiente.Certificacion, null, (_, _) => Task.FromResult(new SiiResponse(200, cola.Count > 0 ? cola.Dequeue() : "sin respuesta")));
+        var (f, _) = Crear([], sii);
+        var r = await f.ProbarConexionAsync();
+        Assert.True(r.Facturas);
+        Assert.False(r.Boletas);
+        Assert.False(r.Ok);
+        Assert.Equal("11111111-1", r.RutTitular);
+        Assert.Contains("Servicio caído", r.Errores["boletas"]);
+        Assert.DoesNotContain("SECRETO", string.Join(' ', r.Errores.Values));
+    }
 }

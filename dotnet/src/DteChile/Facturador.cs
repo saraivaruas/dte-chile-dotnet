@@ -20,6 +20,7 @@ public sealed class Facturador
     private readonly Certificate _cert;
     private readonly IFolioStore _folios;
     private readonly SiiClient _sii;
+    private readonly SiiAmbiente _ambiente;
     private readonly string _fechaResolucion;
     private readonly int _numeroResolucion;
     private readonly Dictionary<int, Caf> _cafs = [];
@@ -34,9 +35,38 @@ public sealed class Facturador
         _emisor = emisor;
         _cert = certificado;
         _folios = folios;
+        _ambiente = ambiente;
         _sii = sii ?? new SiiClient(ambiente);
         _fechaResolucion = fechaResolucion;
         _numeroResolucion = numeroResolucion;
+    }
+
+    /// <summary>
+    /// Comprueba la conexión con el SII SIN enviar ningún documento ni necesitar CAF: autentica (semilla firmada → token) en el servicio de facturas
+    /// y en el de boletas, y dice si el SII aceptó el certificado. No lanza por un fallo del SII: lo informa en el resultado.
+    /// </summary>
+    public async Task<ResultadoConexion> ProbarConexionAsync(CancellationToken ct = default)
+    {
+        var errores = new Dictionary<string, string>();
+        try
+        {
+            _tokenDte = await _sii.AuthenticateAsync(_cert, ct);
+        }
+        catch (Exception e) when (e is not OperationCanceledException)
+        {
+            errores["facturas"] = e.Message;
+        }
+
+        try
+        {
+            _tokenBoleta = await _sii.AuthenticateBoletaAsync(_cert, ct);
+        }
+        catch (Exception e) when (e is not OperationCanceledException)
+        {
+            errores["boletas"] = e.Message;
+        }
+
+        return new ResultadoConexion(_ambiente.ToString(), !errores.ContainsKey("facturas"), !errores.ContainsKey("boletas"), _cert.SubjectRut() ?? string.Empty, _cert.NotAfter, errores);
     }
 
     public Facturador AgregarCaf(Caf caf)

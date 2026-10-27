@@ -97,7 +97,16 @@ $estado = $f->estadoEnvio($envio->trackId);   // ['estado' => 'EPR', 'aceptados'
 
 Si prefiere enviar por otro medio, `$f->sobre([$doc])` entrega el `EnvioDTE`/`EnvioBOLETA` firmado sin subirlo.
 
-## 5. Certificación ante el SII
+## 5. Probar la conexión (sin CAF y sin enviar nada)
+
+```php
+$r = $f->probarConexion();     // C#: await f.ProbarConexionAsync()
+// $r->facturas, $r->boletas, $r->ok(), $r->rutTitular, $r->certificadoVence, $r->errores
+```
+
+Autentica en los servicios de facturas y de boletas y dice si el SII aceptó su certificado. No envía documentos, no necesita CAF y no expone tokens. Ejemplo: `php php/examples/probar_conexion.php`.
+
+## 6. Certificación ante el SII
 
 El SII autoriza a emitir tras superar su proceso de certificación con **su set de pruebas** (documentos con datos fijos que usted descarga, genera, envía y el SII revisa), más la simulación y la declaración de cumplimiento de requisitos. Esta biblioteca arma y envía los documentos; **el resultado de la certificación depende del SII** y de su empresa. Pasos:
 
