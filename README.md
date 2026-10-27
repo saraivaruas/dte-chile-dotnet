@@ -1,17 +1,16 @@
 # dte-chile-dotnet
 
-> Versión C# / .NET de la familia [dte-chile](https://github.com/saraivaruas/dte-chile). Versión PHP: [dte-chile-php](https://github.com/saraivaruas/dte-chile-php). Ambas comparten los esquemas oficiales y las mismas reglas.
+> Versión C# / .NET de la familia [dte-chile](https://github.com/saraivaruas/dte-chile). Versión PHP: [dte-chile-php](https://github.com/saraivaruas/dte-chile-php). Ambas comparten los esquemas oficiales y las mismas reglas; cada una se publica y versiona por separado.
 
 Biblioteca de **software libre (licencia MIT)** para generar, timbrar, firmar y enviar **Documentos Tributarios Electrónicos (DTE)** al
-[SII de Chile](https://www.sii.cl), en **PHP 8.3+** (probada en 8.3, 8.4 y 8.5) y **C# / .NET** (8 y 10). Sin dependencias externas: no usa `ext-soap` ni
-paquetes de terceros.
+[SII de Chile](https://www.sii.cl), en **C# / .NET** (8 y 10). Sin dependencias externas: no usa paquetes de terceros.
 
 > ## Alcance real — léalo antes de usarla
 >
-> - **Los documentos cumplem el esquema y las firmas. Cada usuario debe ingresar los certificados correspondientes autorizado para poder emitir y para que el SII lo acepte** La biblioteca arma el XML según los esquemas oficiales (XSD) y el
+> - **Que un documento cumpla el esquema y las firmas no garantiza que el SII lo acepte.** Cada usuario debe usar su propio certificado digital y sus propios folios (CAF) autorizados para poder emitir. La biblioteca arma el XML según los esquemas oficiales (XSD) y el
 >   formato publicado por el SII, y lo verifica con pruebas automáticas. La aceptación final depende del SII: su ambiente de certificación, el estado de su
 >   empresa como emisora, sus folios (CAF) reales y las validaciones que el SII aplique en cada momento (ver [Resolución Exenta 121](#resolución-exenta-sii-n-121)).
-> - **No ha sido probada contra el SII con documentos reales de producción.** Las pruebas automáticas usan un certificado y un CAF **Auto** generados.
+> - **No ha sido probada contra el SII con documentos reales de producción.** Las pruebas automáticas usan un certificado y un CAF **falsos** generados al vuelo.
 >   Antes de emitir de verdad debe pasar el proceso de certificación del SII con su propio certificado y sus propios folios.
 > - **No es asesoría tributaria ni contable.** Los cálculos (IVA 19 %, impuestos adicionales, retenciones) siguen las reglas publicadas, pero las tasas de
 >   impuestos adicionales y retenciones las debe indicar quien usa la biblioteca, porque cambian por ley.
@@ -19,16 +18,16 @@ paquetes de terceros.
 
 ## Qué hace
 
-| Función | PHP | C# |
-|---|:-:|:-:|
-| Facturas 33, 34, 43, 46, guías 52, notas 56 y 61, exportación 110, 111 y 112 (XML guiado por los XSD oficiales, con validación de campos) | ✔ | ✔ |
-| Boletas 39 y 41 (esquema, IVA incluido y `EnvioBOLETA` propios) | ✔ | ✔ |
-| Totales: IVA, exentos, no facturables, descuentos/recargos globales, impuestos adicionales y retenciones, exportación con decimales | ✔ | ✔ |
-| Timbre electrónico (TED) firmado con el CAF | ✔ | ✔ |
-| Firma XMLDSig del documento y del envío (`EnvioDTE`, `EnvioBOLETA`) | ✔ | ✔ |
-| Libros de compra/venta, de guías y de boletas; consumo de folios (RCOF) | ✔ | ✔ |
-| Respuestas de intercambio, recibos (Ley 19.983), cesión de facturas (AEC) | ✔ | ✔ |
-| Autenticación (semilla/token), envío y consulta de estado (DTE y boletas) | ✔ | ✔ |
+| Función | C# |
+|---|:-:|
+| Facturas 33, 34, 43, 46, guías 52, notas 56 y 61, exportación 110, 111 y 112 (XML guiado por los XSD oficiales, con validación de campos) | ✔ |
+| Boletas 39 y 41 (esquema, IVA incluido y `EnvioBOLETA` propios) | ✔ |
+| Totales: IVA, exentos, no facturables, descuentos/recargos globales, impuestos adicionales y retenciones, exportación con decimales | ✔ |
+| Timbre electrónico (TED) firmado con el CAF | ✔ |
+| Firma XMLDSig del documento y del envío (`EnvioDTE`, `EnvioBOLETA`) | ✔ |
+| Libros de compra/venta, de guías y de boletas; consumo de folios (RCOF) | ✔ |
+| Respuestas de intercambio, recibos (Ley 19.983), cesión de facturas (AEC) | ✔ |
+| Autenticación (semilla/token), envío y consulta de estado (DTE y boletas) | ✔ |
 
 Reglas del formato que el esquema no expresa también se validan: las notas de crédito y débito exigen referencia, la guía de despacho exige el tipo de
 traslado, los textos se restringen a ISO-8859-1 (lo que exige el SII) con mensajes claros.
@@ -61,9 +60,9 @@ var estado = await sii.GetUploadStatusAsync("76123456-0", trackId, token);
 ## Cómo se garantiza la calidad
 
 - **Los esquemas oficiales del SII son la fuente de verdad** (`schemas/`). `tools/gen_spec.py` los convierte en `spec/*.json` (orden, obligatoriedad,
-  largos, patrones, enumeraciones) y ambas implementaciones generan y validan el XML con esa misma especificación.
-- Las pruebas validan cada documento contra el XSD oficial y verifican las firmas **con herramientas independientes** (OpenSSL en PHP; la implementación de
-  XMLDSig de Microsoft en .NET). Hay pruebas de tildes, `ñ`, `&`, rangos de folios, errores de usuario y cada tipo de documento.
+  largos, patrones, enumeraciones) y esta biblioteca genera y valida el XML con esa misma especificación (que comparte con la versión PHP).
+- Las pruebas validan cada documento contra el XSD oficial y verifican las firmas **con herramientas independientes** (la implementación de
+  XMLDSig de Microsoft). Hay pruebas de tildes, `ñ`, `&`, rangos de folios, errores de usuario y cada tipo de documento.
 - Los clientes del SII se prueban sin red con un transporte simulado; las URL y parámetros salen de los WSDL y manuales del SII.
 
 ```bash
