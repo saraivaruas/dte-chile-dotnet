@@ -2,6 +2,7 @@
 
 ## 0.1.0 — 2026-10
 Primera versión pública.
+- Autenticación con el SII (certificación) comprobada con un certificado real, facturas y boletas; ejemplos `probar_conexion.php` y `verificar_certificado.php`.
 - Fachada de alto nivel `Facturador` (PHP y C#) con objetos tipados (`Emisor`, `Receptor`, `Linea`, `Referencia`), folios automáticos (`FolioStore`) y fecha de emisión en hora de Chile.
 - Timbre PDF417 (`Pdf417Encoder`, `timbreSvg()`).
 - Guía por tipo de documento (`docs/guia.md`) y ejemplos ejecutables (`php/examples`).

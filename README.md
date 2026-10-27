@@ -9,8 +9,7 @@ paquetes de terceros.
 > - **Que un documento cumpla el esquema y las firmas no garantiza que el SII lo acepte.** La biblioteca arma el XML según los esquemas oficiales (XSD) y el
 >   formato publicado por el SII, y lo verifica con pruebas automáticas. La aceptación final depende del SII: su ambiente de certificación, el estado de su
 >   empresa como emisora, sus folios (CAF) reales y las validaciones que el SII aplique en cada momento (ver [Resolución Exenta 121](#resolución-exenta-sii-n-121)).
-> - **No ha sido probada contra el SII con documentos reales de producción.** Las pruebas automáticas usan un certificado y un CAF **falsos** generados al vuelo.
->   Antes de emitir de verdad debe pasar el proceso de certificación del SII con su propio certificado y sus propios folios.
+> - **Qué está verificado contra el SII real y qué no.** La autenticación (semilla firmada y token) se probó contra el ambiente de certificación del SII con un certificado digital real, tanto en el servicio de facturas como en el de boletas (octubre de 2026, versión PHP). Los documentos se validan contra los esquemas XSD oficiales y sus firmas se verifican con herramientas independientes. **Aún no se ha probado el envío de documentos con folios (CAF) reales**: las pruebas automáticas usan un certificado y un CAF falsos. Antes de emitir de verdad debe pasar el proceso de certificación del SII con su propio certificado y sus propios folios.
 > - **No es asesoría tributaria ni contable.** Los cálculos (IVA 19 %, impuestos adicionales, retenciones) siguen las reglas publicadas, pero las tasas de
 >   impuestos adicionales y retenciones las debe indicar quien usa la biblioteca, porque cambian por ley.
 > - Se entrega «tal cual», sin garantía (ver [LICENSE](LICENSE)). Usted es responsable de lo que emite.
@@ -36,7 +35,7 @@ traslado, los textos se restringen a ISO-8859-1 (lo que exige el SII) con mensaj
 - Genera el timbre como código **PDF417** (SVG), pero no arma el PDF de la representación impresa ni incluye interfaz, base de datos o administración de clientes: se integra en su sistema. El avance de folios se guarda en un archivo (`ArchivoFolios`) o en su propia base de datos (`FolioStore`).
 - No implementa el registro de compras y ventas (RCV) en línea ni el envío de correos de intercambio.
 - No cubre casos especiales que requieren el bloque `totales` explícito (por ejemplo liquidación-factura, margen de comercialización).
-- No hay verificación contra el SII real de todos los documentos de la lista anterior; los esquemas y las firmas sí están verificados.
+- El envío de documentos con folios reales no está probado contra el SII (falta un CAF de certificación); la autenticación, los esquemas y las firmas sí están verificados.
 
 ## Uso rápido (PHP) — alto nivel
 
@@ -143,7 +142,14 @@ montos) y se actualizará a medida que el SII publique las fases. Si el SII publ
 
 ## Estado de la certificación con el SII
 
-Hoy la biblioteca **no cuenta con una certificación documentada ante el SII**: las pruebas automáticas usan un certificado y un CAF falsos. El proceso de certificación del SII (su set de pruebas, simulación y declaración) lo debe superar cada emisor con su propio certificado y folios; la [guía](docs/guia.md) explica cómo usar `php/examples/certificacion.php` para ese proceso. Cuando exista una certificación aprobada con un emisor real, se documentará aquí.
+| Verificación | Estado |
+|---|---|
+| Autenticación con el SII (semilla firmada → token), facturas y boletas | **Probada** contra el ambiente de certificación con un certificado real (versión PHP) |
+| Documentos válidos contra los XSD oficiales y firmas verificadas de forma independiente | **Probada** (pruebas automáticas, PHP y C#) |
+| Envío de documentos con folios (CAF) reales y aceptación del SII | **Pendiente**: requiere un CAF de certificación |
+| Set de pruebas y declaración de cumplimiento del SII | **Pendiente** |
+
+El proceso de certificación del SII lo debe superar cada emisor con su propio certificado y folios; la [guía](docs/guia.md) explica cómo usar `php/examples/probar_conexion.php` y `php/examples/certificacion.php`. Cuando exista una certificación aprobada con un emisor real, se documentará aquí.
 
 ## Contribuir y seguridad
 
