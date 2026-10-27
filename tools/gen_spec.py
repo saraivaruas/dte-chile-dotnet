@@ -184,8 +184,6 @@ def main() -> int:
     # Copias que usan los paquetes (PHP y .NET las incluyen en su distribución); la fuente única es spec/.
     import shutil
     for destino in (RAIZ / "php" / "resources" / "spec", RAIZ / "dotnet" / "src" / "DteChile" / "Resources" / "spec"):
-        if not (RAIZ / destino.relative_to(RAIZ).parts[0]).exists():
-            continue  # este repositorio contiene solo uno de los dos lenguajes
         destino.mkdir(parents=True, exist_ok=True)
         for f in salida.glob("*.json"):
             shutil.copy2(f, destino / f.name)

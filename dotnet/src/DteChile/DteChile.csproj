@@ -15,8 +15,12 @@
     <RepositoryUrl>https://github.com/saraivaruas/dte-chile</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>chile;sii;dte;factura-electronica;boleta-electronica;xmldsig</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\spec\*.json" LogicalName="spec/%(Filename)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 </Project>

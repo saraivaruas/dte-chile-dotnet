@@ -8,3 +8,7 @@ obj/
 *.pfx
 *.p12
 CAF*.xml
+dotnet/nupkg/
+salida/
+folios.json
+.env
