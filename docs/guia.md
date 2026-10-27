@@ -118,7 +118,38 @@ Genera una hoja Carta con el recuadro rojo (RUT, tipo y folio), la unidad del SI
 - `cedible`: agrega la leyenda CEDIBLE (solo facturas).
 - El PDF no lleva logotipo; si lo necesita, genere el PDF y superponga su imagen, o use el XML con su propio formato de impresión.
 
-## 6. Enviar por pasos y consultar
+### Logotipo
+
+```php
+$pdf = $f->pdf($doc, ['logo' => '/ruta/logo.jpg']);   // ruta o bytes de un JPEG (gris o RGB)
+// C#: f.Pdf(doc, new OpcionesPdf(Logo: File.ReadAllBytes("logo.jpg")))
+```
+
+Se ubica arriba a la izquierda, dentro de 34 x 24 mm, sin deformarlo. Solo JPEG: el PDF lo incrusta tal cual.
+
+## 6. Enviar el documento por correo
+
+```php
+use IngeInnova\DteChile\ConfigSmtp;
+
+$smtp = new ConfigSmtp('smtp.miempresa.cl', 587, 'facturacion@miempresa.cl', 'usuario', 'clave', 'tls', 'Mi Empresa SpA');
+$f->enviarPorCorreo($doc, 'cliente@ejemplo.cl', $smtp);                 // adjunta el XML firmado y el PDF
+$f->enviarPorCorreo($doc, ['a@x.cl', 'b@x.cl'], $smtp, ['conPdf' => false, 'asunto' => 'Su factura']);
+// C#: await f.EnviarPorCorreoAsync(doc, ["cliente@ejemplo.cl"], new ConfigSmtp("smtp.miempresa.cl", 587, "facturacion@miempresa.cl", "usuario", "clave"));
+```
+
+El XML adjunto es el `EnvioDTE` firmado, el mismo que se usa en el intercambio entre contribuyentes. La biblioteca **envía** correos; no lee casillas ni procesa las respuestas que lleguen (para armar las respuestas de intercambio, recibos y cesión use las clases de la capa baja).
+
+## 7. Folios en su propia base de datos
+
+```php
+$f = new Facturador($emisor, $cert, new PdoFolios(new PDO('mysql:host=...;dbname=...', $usuario, $clave)), ...);
+// C#: new DbFolios(() => { var c = new MySqlConnection(cadena); c.Open(); return c; })
+```
+
+Crea la tabla `dte_folios` si no existe y reserva cada folio de forma atómica, aun con varios servidores.
+
+## 8. Enviar por pasos y consultar
 
 ```php
 $envio = $f->enviar([$doc1, $doc2]);          // autentica (semilla + token firmados) y sube; no mezcle boletas con el resto
@@ -127,7 +158,7 @@ $estado = $f->estadoEnvio($envio->trackId);   // ['estado' => 'EPR', 'aceptados'
 
 Si prefiere enviar por otro medio, `$f->sobre([$doc])` entrega el `EnvioDTE`/`EnvioBOLETA` firmado sin subirlo.
 
-## 7. Probar la conexión (sin CAF y sin enviar nada)
+## 9. Probar la conexión (sin CAF y sin enviar nada)
 
 ```php
 $r = $f->probarConexion();     // C#: await f.ProbarConexionAsync()
@@ -136,7 +167,7 @@ $r = $f->probarConexion();     // C#: await f.ProbarConexionAsync()
 
 Autentica en los servicios de facturas y de boletas y dice si el SII aceptó su certificado. No envía documentos, no necesita CAF y no expone tokens. Ejemplo: `php php/examples/probar_conexion.php`.
 
-## 8. Certificación ante el SII
+## 10. Certificación ante el SII
 
 El SII autoriza a emitir tras superar su proceso de certificación con **su set de pruebas** (documentos con datos fijos que usted descarga, genera, envía y el SII revisa), más la simulación y la declaración de cumplimiento de requisitos. Esta biblioteca arma y envía los documentos; **el resultado de la certificación depende del SII** y de su empresa. Pasos:
 

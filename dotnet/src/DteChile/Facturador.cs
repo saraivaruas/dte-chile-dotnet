@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Net.Mail;
 using System.Xml;
 
 namespace DteChile;
@@ -27,6 +28,9 @@ public sealed class Facturador
     private string? _tokenDte;
     private string? _tokenBoleta;
     private int _reintentos = 2;
+
+    /// <summary>Cómo se entrega el correo (por defecto SMTP con System.Net.Mail). Se puede reemplazar, por ejemplo en pruebas.</summary>
+    public Func<MailMessage, ConfigSmtp, CancellationToken, Task>? EnviadorCorreo { get; set; }
     private int _esperaMs = 500;
 
     /// <param name="fechaResolucion">Fecha (AAAA-MM-DD) de la resolución del SII que autoriza al emisor.</param>
@@ -41,6 +45,36 @@ public sealed class Facturador
         _sii = sii ?? new SiiClient(ambiente);
         _fechaResolucion = fechaResolucion;
         _numeroResolucion = numeroResolucion;
+    }
+
+    /// <summary>
+    /// Envía el documento por correo al receptor (o a quien indique): adjunta el XML firmado (el EnvioDTE que se usa para el intercambio entre contribuyentes) y,
+    /// salvo que se pida lo contrario, el PDF de la representación impresa.
+    /// </summary>
+    public async Task EnviarPorCorreoAsync(DocumentoEmitido documento, IReadOnlyList<string> para, ConfigSmtp smtp, OpcionesCorreo? opciones = null, CancellationToken ct = default)
+    {
+        opciones ??= new OpcionesCorreo();
+        if (para.Count == 0)
+        {
+            throw new ArgumentException("Falta al menos un destinatario.");
+        }
+
+        var etiqueta = $"{DocumentType.Label(documento.Tipo)} N° {documento.Folio}";
+        using var mensaje = new MailMessage { From = new MailAddress(smtp.Remitente, smtp.NombreRemitente), Subject = opciones.Asunto ?? $"{etiqueta} de {_emisor.RazonSocial}" };
+        foreach (var p in para)
+        {
+            mensaje.To.Add(new MailAddress(p));
+        }
+
+        mensaje.Body = opciones.Texto ?? $"Estimados,\n\nAdjuntamos la {etiqueta} emitida por {_emisor.RazonSocial} (RUT {_emisor.Rut}).\n\nSaludos cordiales.";
+        var @base = $"{documento.Tipo}-{documento.Folio}";
+        mensaje.Attachments.Add(new Attachment(new MemoryStream(System.Text.Encoding.Latin1.GetBytes(XmlIo.ToXml(Sobre([documento])))), $"{@base}.xml", "application/xml"));
+        if (opciones.ConPdf)
+        {
+            mensaje.Attachments.Add(new Attachment(new MemoryStream(Pdf(documento, opciones.Pdf)), $"{@base}.pdf", "application/pdf"));
+        }
+
+        await (EnviadorCorreo ?? ((m, c, t) => Smtp.EnviarAsync(m, c, t)))(mensaje, smtp, ct);
     }
 
     /// <summary>

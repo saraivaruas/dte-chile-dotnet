@@ -8,7 +8,8 @@ namespace DteChile;
 /// <param name="ResolucionNumero">Número de la resolución para la leyenda «Res. N° de AAAA» del timbre.</param>
 /// <param name="ResolucionFecha">Fecha (AAAA-MM-DD) de esa resolución.</param>
 /// <param name="Cedible">Agrega la leyenda «CEDIBLE» (solo facturas).</param>
-public sealed record OpcionesPdf(string UnidadSii = "SANTIAGO", int? ResolucionNumero = null, string? ResolucionFecha = null, bool Cedible = false);
+/// <param name="Logo">Logotipo de la empresa en JPEG (bytes); se ubica arriba a la izquierda, sin deformarlo.</param>
+public sealed record OpcionesPdf(string UnidadSii = "SANTIAGO", int? ResolucionNumero = null, string? ResolucionFecha = null, bool Cedible = false, byte[]? Logo = null);
 
 /// <summary>
 /// Representación impresa (PDF, tamaño Carta) de un documento tributario electrónico ya firmado, con el timbre PDF417 y las leyendas que pide el SII:
@@ -36,7 +37,7 @@ public sealed class RepresentacionImpresa
         var d = Leer(documento.Xml);
         _pdf = new PdfEscritor();
         _pdf.NuevaPagina();
-        var y = Encabezado(d, opciones.UnidadSii);
+        var y = Encabezado(d, opciones.UnidadSii, opciones.Logo is { Length: > 0 } l ? _pdf.AgregarJpeg(l) : null);
         y = Receptor(d, y);
         y = Referencias(d, y);
         y = Detalle(d, y);
@@ -87,18 +88,25 @@ public sealed class RepresentacionImpresa
             lineas, refs);
     }
 
-    private double Encabezado(Datos d, string unidadSii)
+    private double Encabezado(Datos d, string unidadSii, (int Numero, int Ancho, int Alto)? logo = null)
     {
         var p = _pdf;
         var e = d.Emisor;
         const double boxW = 72.0;
         var boxX = PdfEscritor.AnchoMm - Margen - boxW;
-        var anchoEmisor = boxX - Margen - 6;
+        var izq = Margen;
+        if (logo is { } lg)
+        {
+            p.Imagen(lg.Numero, lg.Ancho, lg.Alto, Margen, Margen + 1, 34.0, 24.0);
+            izq = Margen + 38.0;
+        }
+
+        var anchoEmisor = boxX - izq - 6;
 
         var y = Margen + 6;
         foreach (var l in p.Envolver(e["razon"].ToUpperInvariant(), anchoEmisor, 13, true))
         {
-            p.Texto(Margen, y, l, 13, true);
+            p.Texto(izq, y, l, 13, true);
             y += 5.6;
         }
 
@@ -118,7 +126,7 @@ public sealed class RepresentacionImpresa
 
             foreach (var l in p.Envolver(texto, anchoEmisor, 8.5))
             {
-                p.Texto(Margen, y, l, 8.5);
+                p.Texto(izq, y, l, 8.5);
                 y += 4.1;
             }
         }

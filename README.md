@@ -26,16 +26,20 @@ paquetes de terceros.
 | Libros de compra/venta, de guías y de boletas; consumo de folios (RCOF) | ✔ | ✔ |
 | Respuestas de intercambio, recibos (Ley 19.983), cesión de facturas (AEC) | ✔ | ✔ |
 | Autenticación (semilla/token), envío y consulta de estado (DTE y boletas) | ✔ | ✔ |
-| Representación impresa en PDF (Carta) con el timbre PDF417 | ✔ | ✔ |
+| Representación impresa en PDF (Carta) con el timbre PDF417 y logotipo opcional (JPEG) | ✔ | ✔ |
+| Folios en archivo o en su propia base de datos (`ArchivoFolios`, `PdoFolios`/`DbFolios`, o su propio `FolioStore`) | ✔ | ✔ |
+| Envío del documento por correo (SMTP) con el XML y el PDF adjuntos | ✔ | ✔ |
 
 Reglas del formato que el esquema no expresa también se validan: las notas de crédito y débito exigen referencia, la guía de despacho exige el tipo de
 traslado, los textos se restringen a ISO-8859-1 (lo que exige el SII) con mensajes claros.
 
 ## Qué **no** hace (todavía)
 
-- No incluye interfaz, base de datos, logotipo en el PDF ni administración de clientes: se integra en su sistema. El avance de folios se guarda en un archivo (`ArchivoFolios`) o en su propia base de datos (`FolioStore`).
-- No implementa el registro de compras y ventas (RCV) en línea ni el envío de correos de intercambio.
-- No cubre casos especiales que requieren el bloque `totales` explícito (por ejemplo liquidación-factura, margen de comercialización).
+- No incluye interfaz de usuario ni administración de clientes: es una biblioteca que se integra en el sistema de quien la use.
+- No lee casillas de correo (IMAP) ni procesa los correos de intercambio que le llegan; sí **envía** el documento por correo.
+- No implementa el Registro de Compras y Ventas (RCV) en línea.
+- No calcula automáticamente casos especiales como la liquidación-factura o el margen de comercialización: ahí hay que entregar el bloque `totales` completo.
+- El logotipo del PDF debe ser JPEG (escala de grises o RGB).
 - El envío de documentos con folios reales no está probado contra el SII (falta un CAF de certificación); la autenticación, los esquemas y las firmas sí están verificados.
 
 ## Uso rápido (PHP) — alto nivel

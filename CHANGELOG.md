@@ -1,5 +1,10 @@
 # Cambios
 
+## 0.4.0 — 2026-10
+- **Folios en su base de datos:** `PdoFolios` (PHP, cualquier base con PDO) y `DbFolios` (C#, cualquier `DbConnection`). Reserva cada folio con una actualización condicional, sin bloqueos largos, así dos servidores nunca entregan el mismo folio.
+- **Logotipo en el PDF** (JPEG): opción `logo` / `OpcionesPdf.Logo`; se ubica arriba a la izquierda sin deformarse.
+- **Envío por correo (SMTP):** `Facturador::enviarPorCorreo()` / `EnviarPorCorreoAsync()` con el XML firmado (EnvioDTE) y el PDF adjuntos; `ConfigSmtp`, `Correo` (PHP). Sin dependencias.
+
 ## 0.3.1 — 2026-10
 - README: la representación impresa en PDF figura entre lo que sí hace, no entre lo que no hace.
 - Publicación también en GitHub Packages.

@@ -28,8 +28,75 @@ internal sealed class PdfEscritor
     };
 
     private readonly List<StringBuilder> _paginas = [];
+    private readonly List<(string Datos, int Ancho, int Alto, string Espacio)> _imagenes = [];
 
     public int NumeroPaginas => _paginas.Count;
+
+    /// <summary>Registra una imagen JPEG (solo JPEG: el PDF la incrusta tal cual, sin decodificarla) y devuelve su número y su tamaño en píxeles.</summary>
+    public (int Numero, int Ancho, int Alto) AgregarJpeg(byte[] bytes)
+    {
+        if (bytes.Length < 4 || bytes[0] != 0xFF || bytes[1] != 0xD8)
+        {
+            throw new ArgumentException("El logotipo debe ser una imagen JPEG.");
+        }
+
+        var i = 2;
+        while (i + 9 < bytes.Length)
+        {
+            if (bytes[i] != 0xFF)
+            {
+                i++;
+                continue;
+            }
+
+            var marca = bytes[i + 1];
+            if (marca == 0xFF)
+            {
+                i++;
+                continue;
+            }
+
+            if (marca is 0xD8 or 0x01 || marca is >= 0xD0 and <= 0xD7)
+            {
+                i += 2;
+                continue;
+            }
+
+            var largo = (bytes[i + 2] << 8) | bytes[i + 3];
+            if (marca is >= 0xC0 and <= 0xCF && marca is not (0xC4 or 0xC8 or 0xCC))
+            {
+                var alto = (bytes[i + 5] << 8) | bytes[i + 6];
+                var ancho = (bytes[i + 7] << 8) | bytes[i + 8];
+                var espacio = bytes[i + 9] switch
+                {
+                    1 => "DeviceGray",
+                    3 => "DeviceRGB",
+                    _ => throw new ArgumentException("El JPEG del logotipo debe ser en escala de grises o RGB (no CMYK)."),
+                };
+                if (ancho < 1 || alto < 1)
+                {
+                    break;
+                }
+
+                _imagenes.Add((Encoding.Latin1.GetString(bytes), ancho, alto, espacio));
+
+                return (_imagenes.Count, ancho, alto);
+            }
+
+            i += 2 + largo;
+        }
+
+        throw new ArgumentException("No se pudo leer el tamaño del JPEG del logotipo (archivo dañado).");
+    }
+
+    /// <summary>Dibuja una imagen registrada con <see cref="AgregarJpeg"/> dentro del rectángulo dado (sin deformarla; centrada).</summary>
+    public void Imagen(int numero, int anchoPx, int altoPx, double x, double yMm, double anchoMax, double altoMax)
+    {
+        var razon = Math.Min(anchoMax / anchoPx, altoMax / altoPx);
+        var w = anchoPx * razon;
+        var h = altoPx * razon;
+        Emitir($"q {Mm(w)} 0 0 {Mm(h)} {Mm(x + (anchoMax - w) / 2)} {Y(yMm + (altoMax + h) / 2)} cm /Im{numero} Do Q");
+    }
 
     public void NuevaPagina() => _paginas.Add(new StringBuilder());
 
@@ -194,14 +261,21 @@ internal sealed class PdfEscritor
         };
         var w = (AnchoMm * Pt).ToString("0.00", CultureInfo.InvariantCulture);
         var h = (AltoMm * Pt).ToString("0.00", CultureInfo.InvariantCulture);
+        var idInfo = 5 + n * 2;
+        var xobj = _imagenes.Count == 0 ? string.Empty : " /XObject << " + string.Join(' ', _imagenes.Select((_, k) => $"/Im{k + 1} {idInfo + 1 + k} 0 R")) + " >>";
         for (var i = 0; i < n; i++)
         {
             var contenido = _paginas[i].ToString();
-            objetos.Add($"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 {w} {h}] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents {5 + i * 2 + 1} 0 R >>");
+            objetos.Add($"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 {w} {h}] /Resources << /Font << /F1 3 0 R /F2 4 0 R >>{xobj} >> /Contents {5 + i * 2 + 1} 0 R >>");
             objetos.Add($"<< /Length {contenido.Length} >>\nstream\n{contenido}endstream");
         }
 
         objetos.Add($"<< /Title {Cadena(titulo)} /Producer (dte-chile) >>");
+        foreach (var im in _imagenes)
+        {
+            objetos.Add($"<< /Type /XObject /Subtype /Image /Width {im.Ancho} /Height {im.Alto} /ColorSpace /{im.Espacio} /BitsPerComponent 8 /Filter /DCTDecode /Length {im.Datos.Length} >>\nstream\n{im.Datos}\nendstream");
+        }
+
         var pdf = new StringBuilder("%PDF-1.4\n%âãÏÓ\n");
         var offsets = new List<int>();
         for (var i = 0; i < objetos.Count; i++)
@@ -218,7 +292,7 @@ internal sealed class PdfEscritor
             pdf.Append(o.ToString("D10", CultureInfo.InvariantCulture)).Append(" 00000 n \n");
         }
 
-        pdf.Append($"trailer\n<< /Size {total} /Root 1 0 R /Info {objetos.Count} 0 R >>\nstartxref\n{xref}\n%%EOF\n");
+        pdf.Append($"trailer\n<< /Size {total} /Root 1 0 R /Info {idInfo} 0 R >>\nstartxref\n{xref}\n%%EOF\n");
 
         return Encoding.Latin1.GetBytes(pdf.ToString());
     }
