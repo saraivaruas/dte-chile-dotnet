@@ -2,7 +2,7 @@
 
 > Versión C# / .NET de la familia [dte-chile](https://github.com/saraivaruas/dte-chile). Versión PHP: [dte-chile-php](https://github.com/saraivaruas/dte-chile-php). Ambas comparten los esquemas oficiales y las mismas reglas; cada una se publica y versiona por separado.
 
-Biblioteca de **software libre (licencia MIT)** para generar, timbrar, firmar y enviar **Documentos Tributarios Electrónicos (DTE)** al
+**Biblioteca de facturación electrónica para Chile de alto nivel**: usted entrega los datos del documento (factura, boleta, guía, nota de crédito o débito) y ella arma el XML, calcula los totales, timbra, firma y lo envía al SII. Es de **software libre (licencia MIT)** y sirve para generar, timbrar, firmar y enviar **Documentos Tributarios Electrónicos (DTE)** al
 [SII de Chile](https://www.sii.cl), en **C# / .NET** (8 y 10). Sin dependencias externas: no usa paquetes de terceros.
 
 > ## Alcance real — léalo antes de usarla
@@ -34,7 +34,7 @@ traslado, los textos se restringen a ISO-8859-1 (lo que exige el SII) con mensaj
 
 ## Qué **no** hace (todavía)
 
-- No genera la representación impresa (PDF/PDF417) ni administra folios, clientes o facturación: es una biblioteca de bajo nivel.
+- No genera la representación impresa (PDF/PDF417) ni incluye interfaz, base de datos o administración de clientes y folios: se integra en su sistema.
 - No implementa el registro de compras y ventas (RCV) en línea ni el envío de correos de intercambio.
 - No cubre casos especiales que requieren el bloque `totales` explícito (por ejemplo liquidación-factura, margen de comercialización).
 - No hay verificación contra el SII real de todos los documentos de la lista anterior; los esquemas y las firmas sí están verificados.
