@@ -1,5 +1,9 @@
 # Cambios
 
+## 0.3.0 — 2026-10
+- **Representación impresa en PDF** (`Facturador::pdf()` / `Facturador.Pdf()` y `RepresentacionImpresa`): tamaño Carta, recuadro rojo con RUT, tipo y folio, unidad del SII, emisor, receptor, referencias, detalle (varias páginas), totales y timbre PDF417 con la leyenda «Timbre Electrónico SII … Verifique documento: www.sii.cl». Sirve para facturas, notas, guías y boletas; opción `cedible`. Escritor de PDF propio, sin dependencias.
+- Las pruebas decodifican el PDF417 dibujado en el PDF y lo comparan byte a byte con el timbre del documento.
+
 ## 0.2.0 — 2026-10
 - `emitirYEnviar()` / `EmitirYEnviarAsync()`: emite y envía en una llamada, con reintentos ante fallos temporales (red, SII caído) y estado ya interpretado (`EstadoDocumento`: emitido, enviado, aceptado, con reparos, rechazado).
 - `reenviar()` para documentos que quedaron emitidos sin llegar al SII (el folio no se vuelve a usar) y `consultar()` para actualizar el estado.

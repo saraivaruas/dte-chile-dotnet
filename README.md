@@ -25,14 +25,15 @@ paquetes de terceros.
 | Firma XMLDSig del documento y del envío (`EnvioDTE`, `EnvioBOLETA`) | ✔ | ✔ |
 | Libros de compra/venta, de guías y de boletas; consumo de folios (RCOF) | ✔ | ✔ |
 | Respuestas de intercambio, recibos (Ley 19.983), cesión de facturas (AEC) | ✔ | ✔ |
-| Autenticación (semilla/token), envío y consulta de estado (DTE y boletas) | ✔ | ✔ |
+| Autenticación (semilla/token), envío y consulta de estado (DTE y boletas) | ✔ |
+| Representación impresa en PDF (Carta) con el timbre PDF417 | ✔ | ✔ |
 
 Reglas del formato que el esquema no expresa también se validan: las notas de crédito y débito exigen referencia, la guía de despacho exige el tipo de
 traslado, los textos se restringen a ISO-8859-1 (lo que exige el SII) con mensajes claros.
 
 ## Qué **no** hace (todavía)
 
-- Genera el timbre como código **PDF417** (SVG), pero no arma el PDF de la representación impresa ni incluye interfaz, base de datos o administración de clientes: se integra en su sistema. El avance de folios se guarda en un archivo (`ArchivoFolios`) o en su propia base de datos (`FolioStore`).
+- Genera la **representación impresa en PDF** con el timbre PDF417, pero no incluye interfaz, base de datos, logotipo ni administración de clientes: se integra en su sistema. El avance de folios se guarda en un archivo (`ArchivoFolios`) o en su propia base de datos (`FolioStore`).
 - No implementa el registro de compras y ventas (RCV) en línea ni el envío de correos de intercambio.
 - No cubre casos especiales que requieren el bloque `totales` explícito (por ejemplo liquidación-factura, margen de comercialización).
 - El envío de documentos con folios reales no está probado contra el SII (falta un CAF de certificación); la autenticación, los esquemas y las firmas sí están verificados.

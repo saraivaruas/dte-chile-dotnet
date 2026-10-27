@@ -104,7 +104,21 @@ $r = $f->consultar($r);   // más tarde: actualiza el estado (aceptado, con repa
 - Si el SII no responde, el resultado queda en **Emitido**: el folio ya se usó y el documento está firmado. Reenvíelo con `$f->reenviar($r->documento)`; no se emite otro.
 - Nunca lanza por un fallo del SII: el motivo viene en `mensaje`, y el texto original en `detalleTecnico`.
 
-## 5. Enviar por pasos y consultar
+## 5. Representación impresa (PDF)
+
+```php
+$pdf = $f->pdf($doc, ['unidadSii' => 'Santiago Centro', 'cedible' => true]);   // bytes del PDF
+file_put_contents("factura-{$doc->folio}.pdf", $pdf);
+// C#: File.WriteAllBytes("factura.pdf", f.Pdf(doc, new OpcionesPdf("Santiago Centro", Cedible: true)));
+```
+
+Genera una hoja Carta con el recuadro rojo (RUT, tipo y folio), la unidad del SII, emisor, receptor, referencias, detalle (pasa a otra página si hace falta), totales y el **timbre PDF417** con «Verifique documento: www.sii.cl». Usa el número y la fecha de resolución del `Facturador`. Sirve para todos los tipos, boletas incluidas.
+
+- `unidadSii`: la unidad del SII que le corresponde a su empresa (por defecto SANTIAGO).
+- `cedible`: agrega la leyenda CEDIBLE (solo facturas).
+- El PDF no lleva logotipo; si lo necesita, genere el PDF y superponga su imagen, o use el XML con su propio formato de impresión.
+
+## 6. Enviar por pasos y consultar
 
 ```php
 $envio = $f->enviar([$doc1, $doc2]);          // autentica (semilla + token firmados) y sube; no mezcle boletas con el resto
@@ -113,7 +127,7 @@ $estado = $f->estadoEnvio($envio->trackId);   // ['estado' => 'EPR', 'aceptados'
 
 Si prefiere enviar por otro medio, `$f->sobre([$doc])` entrega el `EnvioDTE`/`EnvioBOLETA` firmado sin subirlo.
 
-## 6. Probar la conexión (sin CAF y sin enviar nada)
+## 7. Probar la conexión (sin CAF y sin enviar nada)
 
 ```php
 $r = $f->probarConexion();     // C#: await f.ProbarConexionAsync()
@@ -122,7 +136,7 @@ $r = $f->probarConexion();     // C#: await f.ProbarConexionAsync()
 
 Autentica en los servicios de facturas y de boletas y dice si el SII aceptó su certificado. No envía documentos, no necesita CAF y no expone tokens. Ejemplo: `php php/examples/probar_conexion.php`.
 
-## 7. Certificación ante el SII
+## 8. Certificación ante el SII
 
 El SII autoriza a emitir tras superar su proceso de certificación con **su set de pruebas** (documentos con datos fijos que usted descarga, genera, envía y el SII revisa), más la simulación y la declaración de cumplimiento de requisitos. Esta biblioteca arma y envía los documentos; **el resultado de la certificación depende del SII** y de su empresa. Pasos:
 

@@ -44,6 +44,13 @@ public sealed class Facturador
     }
 
     /// <summary>
+    /// Representación impresa en PDF (Carta) con el timbre PDF417. Usa la resolución del Facturador para la leyenda del timbre.
+    /// </summary>
+    /// <returns>Bytes del archivo PDF.</returns>
+    public byte[] Pdf(DocumentoEmitido documento, OpcionesPdf? opciones = null)
+        => new RepresentacionImpresa().Generar(documento, (opciones ?? new OpcionesPdf()) with { ResolucionNumero = opciones?.ResolucionNumero ?? _numeroResolucion, ResolucionFecha = opciones?.ResolucionFecha ?? _fechaResolucion });
+
+    /// <summary>
     /// Comprueba la conexión con el SII SIN enviar ningún documento ni necesitar CAF: autentica (semilla firmada → token) en el servicio de facturas
     /// y en el de boletas, y dice si el SII aceptó el certificado. No lanza por un fallo del SII: lo informa en el resultado.
     /// </summary>
